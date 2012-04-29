@@ -1,0 +1,63 @@
+class Search
+  attr_reader :options
+
+  def initialize(model, options)
+    @model = model
+    @options = options || {}
+  end
+
+  def rate
+    options[:rate]
+  end
+
+  def purchased_date
+    options[:purchased_date]
+  end
+
+  def purchased_time_before
+    date_from_options(:purchased_date_before)
+  end
+
+  def has_purchased_date?
+    purchased_date.present?
+  end
+
+  def has_rate?
+    rate.present?
+  end
+
+
+  def conditions
+    conditions = []
+    parameters = []
+    return nil if options.empty?
+
+    if has_purchased_date?
+      conditions << "#{@model.table_name}.purchased_date = ?"
+      parameters << "%#{purchased_date}%"
+    end
+
+    if has_rate?
+      conditions << "#{@model.table_name}.rate = ?"
+      parameters << "%#{rate}%"
+    end
+
+    unless conditions.empty?
+      [conditions.join(" AND "), *parameters]
+    else
+      nil
+    end
+  end
+
+  private
+ 
+  def date_from_options(which)
+     part = Proc.new { |n| options["#{which}(#{n}i)"] }
+     y, m, d = part[1], part[2], part[3]
+     y = Date.today.year if y.blank?
+     Date.new(y.to_i, m.to_i, d.to_i)
+   rescue ArgumentError => e
+     return nil
+   end
+ 
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  rate: 9.99
+  purchased_date: 2012-04-27
+  purchased_time: 2012-04-27 14:47:16
+  expiration_time: 2012-04-27 14:47:16
+
+two:
+  email: MyString
+  rate: 9.99
+  purchased_date: 2012-04-27
+  purchased_time: 2012-04-27 14:47:16
+  expiration_time: 2012-04-27 14:47:16
