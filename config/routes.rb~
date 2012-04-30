@@ -2,8 +2,11 @@ Ptrexchange::Application.routes.draw do
   resources :tickets
 
   get "home/index"
-
+  get "receipts/search"
   resources :receipts
+
+  #match ':controller(/:action(/:id))(.:format)'
+  #match 'search' => 'receipts#search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

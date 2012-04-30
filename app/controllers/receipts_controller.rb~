@@ -2,12 +2,18 @@ class ReceiptsController < ApplicationController
   # GET /receipts
   # GET /receipts.json
   def index
-    @search = Search.new(Receipt, params[:search])
-    if is_search?
-      @receipts = Receipt.search(@search, :page => params[:page])
-    else
-      @receipts = Receipt.all
+    @receipts = Receipt.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @receipts }
     end
+  end
+
+
+  def search
+    @search = Search.new(Receipt, params)
+    @receipts = Receipt.search(@search)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,11 +90,5 @@ class ReceiptsController < ApplicationController
       format.html { redirect_to receipts_url }
       format.json { head :no_content }
     end
-  end
-
-  private
-   
-  def is_search?
-    @search.conditions
   end
 end

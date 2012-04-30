@@ -2,8 +2,9 @@ Ptrexchange::Application.routes.draw do
   resources :tickets
 
   get "home/index"
-  get "receipts/search"
+  get "home/search"
   resources :receipts
+  resources :tickets
 
   #match ':controller(/:action(/:id))(.:format)'
   #match 'search' => 'receipts#search'

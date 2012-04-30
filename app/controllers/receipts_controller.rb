@@ -11,15 +11,15 @@ class ReceiptsController < ApplicationController
   end
 
 
-  def search
-    @search = Search.new(Receipt, params)
-    @receipts = Receipt.search(@search)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @receipts }
-    end
-  end
+#  def search
+#    @search = Search.new(Receipt, params)
+#    @receipts = Receipt.search(@search)
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @receipts }
+#    end
+#  end
 
   # GET /receipts/1
   # GET /receipts/1.json

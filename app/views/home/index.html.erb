@@ -1,7 +1,7 @@
 <h1>Home#index</h1>
 
 
-<%= form_tag("/receipts/search", :method => "get") do %>
+<%= form_tag("/home/search", :method => "get") do %>
   <%= label_tag(:rate, "Rate:") %>
   <%= select_tag(:rate, options_for_select([['$1.50',1.5],['$3.50',3.5],['$5.00',5.0]])) %>
 <p>
