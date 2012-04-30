@@ -3,6 +3,8 @@
 <table>
   <tr>
     <th>Email</th>
+    <th>Ticket Time</th>
+    <th>Rate</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +13,8 @@
 <% @tickets.each do |ticket| %>
   <tr>
     <td><%= ticket.email %></td>
+    <td><%= ticket.ticket_time %></td>
+    <td><%= ticket.rate %></td>
     <td><%= link_to 'Show', ticket %></td>
     <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
     <td><%= link_to 'Destroy', ticket, confirm: 'Are you sure?', method: :delete %></td>

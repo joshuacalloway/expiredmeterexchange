@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429070958) do
+ActiveRecord::Schema.define(:version => 20120430130217) do
 
   create_table "receipts", :force => true do |t|
     t.string   "email"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(:version => 20120429070958) do
 
   create_table "tickets", :force => true do |t|
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "ticket_time"
+    t.decimal  "rate"
   end
 
 end

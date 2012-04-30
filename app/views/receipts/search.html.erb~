@@ -1,4 +1,4 @@
-<h1>Listing receipts</h1>
+<h1>Found these matching receipts</h1>
 
 <table>
   <tr>
@@ -23,5 +23,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New Receipt', new_receipt_path %>
