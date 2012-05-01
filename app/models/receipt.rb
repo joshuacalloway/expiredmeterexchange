@@ -1,6 +1,5 @@
 class Receipt < ActiveRecord::Base
-  attr_accessible :email, :expiration_time, :purchased_time, :rate
-  # attr_writer :email, :ticket_time, :rate, :purchased_time, :expiration_time
+  attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number
   validate :purchased_time_is_valid, :email_is_valid, :expiration_time_is_valid
 
   def expiration_time_is_valid

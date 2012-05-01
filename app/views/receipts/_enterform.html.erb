@@ -11,6 +11,7 @@
   </div>
   <tr>
     <th>Rate
+    <th>Total Paid
     <th>Purchased Time
     <th>Expiration Time
 </thead>
@@ -19,6 +20,7 @@
   <tr>
     <%= fields_for "receipt[#{index}]" do |r| %>
      <td><%= r.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+     <td><%= r.text(:total_paid) %>
     <td><%= r.datetime_select :purchased_time %>
     <td><%= r.datetime_select :expiration_time %>
   </tr>
