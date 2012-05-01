@@ -1,5 +1,6 @@
 class Receipt < ActiveRecord::Base
   attr_accessible :email, :expiration_time, :purchased_time, :rate
+  # attr_writer :email, :ticket_time, :rate, :purchased_time, :expiration_time
   validate :purchased_time_is_valid, :email_is_valid, :expiration_time_is_valid
 
   def expiration_time_is_valid
@@ -7,7 +8,7 @@ class Receipt < ActiveRecord::Base
   end
 
   def purchased_time_is_valid
-    errors.add(:purchased_time, 'purchased time is not Right, please double check') if purchased_time >= Time.now
+    errors.add(:purchased_time, 'purchased time is not Right, please double check') if purchased_time > Time.now
   end
 
   def email_is_valid

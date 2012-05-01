@@ -4,6 +4,7 @@ Ptrexchange::Application.routes.draw do
   get "home/search"
   get "tickets/enter"
   get "receipts/enter"
+  get "receipts/createmultiple"
 
   resources :receipts
   

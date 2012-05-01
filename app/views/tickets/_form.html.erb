@@ -20,8 +20,8 @@
     <%= f.text_field :cell_number %>
   </div>
   <div class="field">
-    <%= label_tag(:rate, "Rate:") %>
-    <%= select_tag(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <%= f.label :rate %>
+    <%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
   </div>
   <div class="field">
     <%= f.label :ticket_time %><br />

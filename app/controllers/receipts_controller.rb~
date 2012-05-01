@@ -1,19 +1,9 @@
+# -*- coding: utf-8-auto -*-
 class ReceiptsController < ApplicationController
   # GET /receipts
   # GET /receipts.json
   def index
     @receipts = Receipt.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @receipts }
-    end
-  end
-
-
-  def search
-    @search = Search.new(Receipt, params)
-    @receipts = Receipt.search(@search)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,6 +19,45 @@ class ReceiptsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @receipt }
+    end
+  end
+
+  def any_invalid?(receipts)
+    receipts.each { |r| return true if !r.valid? }
+    return false
+  end
+
+  def createmultiple
+    # @receipt1 = Receipt.new(params[:receipt]["0"])
+    @receipts = []
+    notices = ''
+    count = 0
+    params["receipt"].each_value { |r| 
+      receipt = Receipt.new(r)
+      if !receipt.save
+        notices << 'receipt not saved properly'
+      else
+        count++
+      end
+    }
+    notices << count.to_s << ' receipts saved success.'
+    :alert => ‘Something went wrong’
+    respond_to do |format|
+      flash[:notice] = notices
+      format.html { redirect_to receipts_enter_path } # createmultiple.html.erb
+      format.json { render json: @receipts }
+    end
+  end
+  
+  # GET /receipts/enter
+  # GET /receipts/enter.json
+  def enter
+    @receipts = Array.new(2) { Receipt.new } # set up any defaults here
+    
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @receipts }
     end
   end
 
@@ -52,7 +81,6 @@ class ReceiptsController < ApplicationController
   # POST /receipts.json
   def create
     @receipt = Receipt.new(params[:receipt])
-
     respond_to do |format|
       if @receipt.save
         format.html { redirect_to @receipt, notice: 'Receipt was successfully created.' }

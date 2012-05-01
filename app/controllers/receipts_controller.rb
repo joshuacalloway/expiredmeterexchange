@@ -21,14 +21,39 @@ class ReceiptsController < ApplicationController
     end
   end
 
+  def any_invalid?(receipts)
+    receipts.each { |r| return true if !r.valid? }
+    return false
+  end
+
+  def createmultiple
+    # @receipt1 = Receipt.new(params[:receipt]["0"])
+    @receipts = []
+    notices = ''
+    count = 0
+    params["receipt"].each_value do |r| 
+      receipt = Receipt.new(r)
+      receipt.email = params[:email]
+      count = count+1 if receipt.save
+    end
+
+    notices << count.to_s << ' receipts saved success.'
+    respond_to do |format|
+      flash[:notice] = notices
+      format.html { redirect_to receipts_enter_path } # createmultiple.html.erb
+      format.json { render json: @receipts }
+    end
+  end
+  
   # GET /receipts/enter
   # GET /receipts/enter.json
   def enter
-    @receipt = Receipt.new
+    @receipts = Array.new(2) { Receipt.new } # set up any defaults here
+    
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @receipt }
+      format.json { render json: @receipts }
     end
   end
 
@@ -52,7 +77,6 @@ class ReceiptsController < ApplicationController
   # POST /receipts.json
   def create
     @receipt = Receipt.new(params[:receipt])
-
     respond_to do |format|
       if @receipt.save
         format.html { redirect_to @receipt, notice: 'Receipt was successfully created.' }
