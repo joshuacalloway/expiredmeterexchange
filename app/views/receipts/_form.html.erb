@@ -15,10 +15,7 @@
     <%= f.label :email %>(required)<br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :cell_number %>(optional)<br />
-    <%= f.text_field :cell_number %>
-  </div>
+
   <div class="field">
     <%= f.label :rate %><br />
     <%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
