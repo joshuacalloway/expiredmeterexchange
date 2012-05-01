@@ -13,12 +13,12 @@ class Search
     options[:rate]
   end
 
-  def ticket_datetime
-    options[:ticket_datetime]
+  def ticket_time
+    options[:ticket_time]
   end
 
-  def has_ticket_datetime?
-    ticket_datetime.present?
+  def has_ticket_time?
+    ticket_time.present?
   end
 
   def has_rate?
@@ -29,8 +29,8 @@ class Search
   def conditions
     c = {}
     c[:rate] = ((rate.to_f-0.01).to_s ..'100')
-    c[:purchased_time] = (date_from_options(ticket_datetime).to_s + ' 00:00:00'..time_from_options(ticket_datetime))
-    c[:expiration_time] = (time_from_options(ticket_datetime)..date_from_options(ticket_datetime) + ' 23:59:59')
+    c[:purchased_time] = (date_from_options(ticket_time).to_s + ' 00:00:00'..time_from_options(ticket_time))
+    c[:expiration_time] = (time_from_options(ticket_time)..date_from_options(ticket_time) + ' 23:59:59')
 
     c
   end

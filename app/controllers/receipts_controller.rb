@@ -21,6 +21,17 @@ class ReceiptsController < ApplicationController
     end
   end
 
+  # GET /receipts/enter
+  # GET /receipts/enter.json
+  def enter
+    @receipt = Receipt.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @receipt }
+    end
+  end
+
   # GET /receipts/new
   # GET /receipts/new.json
   def new

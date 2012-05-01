@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  
   def index
   end
 
@@ -12,7 +13,7 @@ class HomeController < ApplicationController
         format.json { render json: @receipts }
       end
     else
-      redirect_to tickets_enter_path(:rate => params[:rate], :ticket_datetime => { :year => params[:ticket_datetime][:year], :month => params[:ticket_datetime][:month], :day => params[:ticket_datetime][:day], :hour => params[:ticket_datetime][:hour], :minute => params[:ticket_datetime][:minute]})
+      redirect_to tickets_enter_path(:rate => params[:rate], :ticket_time => { :year => params[:ticket_time][:year], :month => params[:ticket_time][:month], :day => params[:ticket_time][:day], :hour => params[:ticket_time][:hour], :minute => params[:ticket_time][:minute]})
     end
   end
 

@@ -1,3 +1,6 @@
+require 'time'
+require 'date'
+
 class Search
   attr_reader :options
 
@@ -10,16 +13,12 @@ class Search
     options[:rate]
   end
 
-  def purchased_date
-    options[:purchased_date]
+  def ticket_datetime
+    options[:ticket_datetime]
   end
 
-  def purchased_time_before
-    date_from_options(:purchased_date_before)
-  end
-
-  def has_purchased_date?
-    purchased_date.present?
+  def has_ticket_datetime?
+    ticket_datetime.present?
   end
 
   def has_rate?
@@ -28,36 +27,19 @@ class Search
 
 
   def conditions
-    conditions = []
-    parameters = []
-    return nil if options.empty?
+    c = {}
+    c[:rate] = ((rate.to_f-0.01).to_s ..'100')
+    c[:purchased_time] = (date_from_options(ticket_datetime).to_s + ' 00:00:00'..time_from_options(ticket_datetime))
+    c[:expiration_time] = (time_from_options(ticket_datetime)..date_from_options(ticket_datetime) + ' 23:59:59')
 
-    if has_purchased_date?
-      conditions << "#{@model.table_name}.purchased_date = ?"
-      parameters << "%#{purchased_date}%"
-    end
-
-    if has_rate?
-      conditions << "#{@model.table_name}.rate = ?"
-      parameters << "%#{rate}%"
-    end
-
-    unless conditions.empty?
-      [conditions.join(" AND "), *parameters]
-    else
-      nil
-    end
+    c
   end
 
-  private
- 
+  def time_from_options(which)
+    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day] + " " + which[:hour] + ":" + which[:minute] + "00"
+  end
+
   def date_from_options(which)
-     part = Proc.new { |n| options["#{which}(#{n}i)"] }
-     y, m, d = part[1], part[2], part[3]
-     y = Date.today.year if y.blank?
-     Date.new(y.to_i, m.to_i, d.to_i)
-   rescue ArgumentError => e
-     return nil
-   end
- 
+    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day]
+  end
 end
