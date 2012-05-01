@@ -1,0 +1,61 @@
+
+<%= form_tag("/receipts/createmultiple", :method => "get") do %>
+
+<table>
+<thead>
+  <tr>
+  <th>
+  <div class="field">
+    Your Email<br />
+    <%= text_field_tag 'email' %>
+  </div>
+  <tr>
+    <th>
+    <th>Rate
+    <th>Purchased Time
+    <th>Expiration Time
+</thead>
+<tbody>
+  <tr>
+    <td>
+    <td><%= select_tag(:rate1, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= select_datetime Date.today, :prefix=> :purchased_time1 %>
+    <td><%= select_datetime Date.today, :prefix=> :expiration_time1 %>
+  </tr>
+  <tr>
+    <td>
+    <td><%= select_tag(:rate2, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= select_datetime Date.today, :prefix=> :purchased_time2 %>
+    <td><%= select_datetime Date.today, :prefix=> :expiration_time2 %>
+
+    <td>
+  </tr>
+  <tr>
+    <td>
+    <td><%= select_tag(:rate3, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= select_datetime Date.today, :prefix=> :purchased_time3 %>
+    <td><%= select_datetime Date.today, :prefix=> :expiration_time3 %>
+
+    <td>
+  </tr>
+  <tr>
+    <td>
+    <td><%= select_tag(:rate4, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= select_datetime Date.today, :prefix=> :purchased_time4 %>
+    <td><%= select_datetime Date.today, :prefix=> :expiration_time4 %>
+
+    <td><textfield/>
+  </tr>
+  <tr>
+    <td>
+    <td><%= select_tag(:rate5, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= select_datetime Date.today, :prefix=> :purchased_time5 %>
+    <td><%= select_datetime Date.today, :prefix=> :expiration_time5 %>
+
+    <td>
+  </tr>
+  <tr>
+    <th colspan="4"><%= submit_tag("Enter Meter Receipts") %>
+</tbody>
+</table>
+<% end %>

@@ -27,7 +27,6 @@ class ReceiptsController < ApplicationController
   end
 
   def createmultiple
-    # @receipt1 = Receipt.new(params[:receipt]["0"])
     @receipts = []
     notices = ''
     count = 0
