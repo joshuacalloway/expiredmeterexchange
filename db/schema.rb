@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430130217) do
+ActiveRecord::Schema.define(:version => 20120501014916) do
 
   create_table "receipts", :force => true do |t|
     t.string   "email"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120430130217) do
     t.datetime "updated_at",  :null => false
     t.datetime "ticket_time"
     t.decimal  "rate"
+    t.integer  "cell_number"
   end
 
 end
