@@ -17,4 +17,8 @@ class Receipt < ActiveRecord::Base
   def self.search(search)
     self.where(search.conditions)
   end
+
+  def hidden_email
+    email[0] + "gmail.com" if email_is_valid
+  end
 end

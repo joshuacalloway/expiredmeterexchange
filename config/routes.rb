@@ -5,9 +5,11 @@ Ptrexchange::Application.routes.draw do
   get "tickets/enter"
   get "receipts/enter"
   get "receipts/createmultiple"
+  get "admin/receipts"
+  get "admin/tickets"
 
   resources :receipts
-  
+  resources :admin
   resources :tickets
 
   #match ':controller(/:action(/:id))(.:format)'

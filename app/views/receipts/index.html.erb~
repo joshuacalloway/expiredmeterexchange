@@ -17,7 +17,7 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
-    <td><%= receipt.email %></td>
+    <td><%= receipt.hidden_email %></td>
     <td><%= receipt.rate %></td>
     <td><%= receipt.purchased_time %></td>
     <td><%= receipt.expiration_time %></td>
@@ -30,4 +30,3 @@
 
 <br />
 
-<%= link_to 'New Receipt', new_receipt_path %>
