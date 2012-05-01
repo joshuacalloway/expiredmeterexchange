@@ -32,6 +32,20 @@ class TicketsController < ApplicationController
     end
   end
 
+  # GET /tickets/enter
+  def enter
+    @ticket = Ticket.new
+    @ticket.rate = params[:rate]
+    @ticket.ticket_time = params[:ticket_datetime][:year] + "-" + params[:ticket_datetime][:month]+"-" + params[:ticket_datetime][:day] + " " + params[:ticket_datetime][:hour]+":"+params[:ticket_datetime][:minute]
+
+# params[:ticket_datetime]
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @ticket }
+    end
+  end
+
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])

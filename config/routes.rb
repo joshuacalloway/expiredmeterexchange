@@ -1,9 +1,11 @@
 Ptrexchange::Application.routes.draw do
-  resources :tickets
 
   get "home/index"
   get "home/search"
+  get "tickets/enter"
+
   resources :receipts
+  
   resources :tickets
 
   #match ':controller(/:action(/:id))(.:format)'
