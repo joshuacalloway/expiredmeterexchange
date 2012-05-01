@@ -36,6 +36,7 @@ class TicketsController < ApplicationController
   def enter
     @ticket = Ticket.new
     @ticket.rate = params[:rate]
+    @ticket.cell_number = params[:cell_number]
     @ticket.ticket_time = params[:ticket_time][:year] + "-" + params[:ticket_time][:month]+"-" + params[:ticket_time][:day] + " " + params[:ticket_time][:hour]+":"+params[:ticket_time][:minute]
 
 # params[:ticket_time]

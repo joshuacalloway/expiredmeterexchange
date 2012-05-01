@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Email</th>
+    <th>Cell Number</th>
     <th>Ticket Time</th>
     <th>Rate</th>
     <th></th>
@@ -13,6 +14,7 @@
 <% @tickets.each do |ticket| %>
   <tr>
     <td><%= ticket.email %></td>
+    <td><%= ticket.cell_number %></td>
     <td><%= ticket.ticket_time %></td>
     <td><%= ticket.rate %></td>
     <td><%= link_to 'Show', ticket %></td>
