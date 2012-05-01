@@ -21,10 +21,6 @@
     <%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
   </div>
   <div class="field">
-    <%= f.label :total_paid %><br />
-    <%= f.text_field :total_paid %>
-  </div>
-  <div class="field">
     <%= f.label :purchased_time %><br />
     <%= f.datetime_select :purchased_time %>
   </div>
