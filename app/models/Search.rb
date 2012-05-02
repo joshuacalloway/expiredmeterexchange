@@ -37,11 +37,11 @@ class Search
   end
   
   def to_date(val)
-    return Date.parse(val)
+     return DateTime.parse(val)
   end
 
   def time_from_options(which)
-    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day] + " " + which[:hour] + ":" + which[:minute] + "00"
+    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day] + " " + which[:hour] + ":" + which[:minute] + ":00"
   end
 
   def date_from_options(which)
