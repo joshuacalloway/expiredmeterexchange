@@ -1,4 +1,4 @@
-<h1>Listing All receipts</h1>
+<h1>These are all of the Meter Receipts</h1>
 
 <% if flash[:notice] %>
     <div id="notice"><%= flash[:notice] %></div>
@@ -6,7 +6,7 @@
 
 <table>
   <tr>
-    <th>Email</th>
+    <th>
     <th>Rate</th>
     <th>Purchased time</th>
     <th>Expiration time</th>
@@ -17,12 +17,11 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
-    <td><%= receipt.email %></td>
+    <td><a style="font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;" href="<%= receipt.mailto_link %>">Yep, this receipt will do it</a></td>
     <td><%= receipt.rate %></td>
     <td><%= receipt.purchased_time %></td>
     <td><%= receipt.expiration_time %></td>
-    <td><%= link_to 'Show', receipt %></td>
-  </tr>
+    </tr>
 <% end %>
 </table>
 
