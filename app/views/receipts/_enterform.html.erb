@@ -4,14 +4,13 @@
 <table>
 <thead>
   <tr>
-  <th colspan="2">
-  <div class="field">
-    Your Email :<th>
-    <%= text_field_tag 'email' %>
-  </div>
+  <th colspan="1" align="right">
+    Your Email: </th>
+  <td colspan="3"><%= text_field_tag('email', '', :size => 30) %></td>
+
   <tr>
     <th>Rate
-    <th>Total Paid
+    <th>Paid
     <th>Purchased Time
     <th>Expiration Time
 </thead>
@@ -19,8 +18,8 @@
   <% @receipts.each_with_index do |receipt, index| %>
   <tr>
     <%= fields_for "receipt[#{index}]" do |r| %>
-     <td><%= r.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
-     <td><%= r.text_field(:total_paid) %>
+    <td><%= r.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td><%= r.text_field(:total_paid, :size =>10 ) %>
     <td><%= r.datetime_select :purchased_time %>
     <td><%= r.datetime_select :expiration_time %>
   </tr>

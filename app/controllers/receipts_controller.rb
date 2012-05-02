@@ -47,7 +47,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts/enter
   # GET /receipts/enter.json
   def enter
-    @receipts = Array.new(2) { Receipt.new } # set up any defaults here
+    @receipts = Array.new(3) { Receipt.new } # set up any defaults here
     
 
     respond_to do |format|
