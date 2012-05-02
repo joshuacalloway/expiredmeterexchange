@@ -29,10 +29,10 @@
     <td><%= f.text_field :total_paid %></td>
   <tr>
     <th><%= f.label :purchased_time %></th>
-    <th><%= f.datetime_select :purchased_time %></th>
+    <th><%= f.datetime_select :purchased_time, :default=> DateTime.now.advance(:minutes => -60) %></th>
   <tr>
     <th><%= f.label :expiration_time %></th>
-    <th><%= f.datetime_select :expiration_time %></th>
+    <th><%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5) %></th>
   <tr>
     <th><%= f.submit %>
 </tbody>
