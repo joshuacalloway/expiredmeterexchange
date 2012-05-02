@@ -1,6 +1,10 @@
 class Ticket < ActiveRecord::Base
   attr_accessible :email, :ticket_time, :rate, :cell_number, :amount
-  validate :ticket_time_is_valid, :email_is_valid
+  validate :ticket_time_is_valid, :email_is_valid, :amount_is_valid
+
+  def amount_is_valid
+    errors.add(:amount, 'ticket amount is not right.  Please double check') if amount < 40 || amount > 200
+  end
 
   def ticket_time_is_valid
     errors.add(:ticket_time, 'ticket time is not Right, please double check') if ticket_time >= Time.now
