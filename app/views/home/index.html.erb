@@ -1,17 +1,11 @@
-<h1>Search for Parking Meter Receipts</h1>
+Search for Parking Meter Receipts
 
 
 <%= form_tag("/home/search", :method => "get") do %>
-  <%= label_tag(:rate, "Rate:") %>
-  <%= select_tag(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
-<p>
-  <%= label_tag(:ticket_time, "Ticket Time:") %>
-  <%= select_datetime Date.today, :prefix=> :ticket_time %>
-<p>
-
-  <%= submit_tag("Search") %>
+<table>
+  <tr><th align="left"><%= label_tag(:rate, "Rate:") %><%= select_tag(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></th></tr>
+  <tr><th align="left"><%= label_tag(:ticket_time, "Ticket Time:") %></th></tr>
+  <tr><td colspan="2"><%= select_datetime DateTime.now.advance(:minutes => -30), :prefix=> :ticket_time %></td></tr>
+  <tr><th colspan="2" align="left"><%= submit_tag("Search Meter Receipts") %></th></tr>
+</table>
 <% end %>
-
-<p>----- Find me in app/views/home/index.html.erb ---- </p>
-
-
