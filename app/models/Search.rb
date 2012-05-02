@@ -28,11 +28,16 @@ class Search
 
   def conditions
     c = {}
-    c[:rate] = ((rate.to_f-0.01).to_s ..'100')
-    c[:purchased_time] = (date_from_options(ticket_time).to_s + ' 00:00:00'..time_from_options(ticket_time))
-    c[:expiration_time] = (time_from_options(ticket_time)..date_from_options(ticket_time) + ' 23:59:59')
+    c[:rate] = (rate.to_f-0.01).to_s
+    c[:purchased_time_start] = to_date(date_from_options(ticket_time) + ' 00:00:00')
+    c[:purchased_time_end] = to_date(time_from_options(ticket_time))
 
+    c[:expiration_time_start] = to_date(time_from_options(ticket_time))
     c
+  end
+  
+  def to_date(val)
+    return Date.parse(val)
   end
 
   def time_from_options(which)

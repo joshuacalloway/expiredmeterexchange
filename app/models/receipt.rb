@@ -15,7 +15,7 @@ class Receipt < ActiveRecord::Base
   end
 
   def self.search(search)
-    self.where(search.conditions)
+    self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate", search.conditions)
   end
 
 end
