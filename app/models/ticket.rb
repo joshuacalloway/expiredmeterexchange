@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
-  attr_accessible :email, :ticket_time, :rate, :cell_number
+  attr_accessible :email, :ticket_time, :rate, :cell_number, :amount
   validate :ticket_time_is_valid, :email_is_valid
 
   def ticket_time_is_valid

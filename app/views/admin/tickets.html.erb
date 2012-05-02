@@ -6,6 +6,7 @@
     <th>Cell Number</th>
     <th>Ticket Time</th>
     <th>Rate</th>
+    <th>Amount</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
     <td><%= ticket.cell_number %></td>
     <td><%= ticket.ticket_time %></td>
     <td><%= ticket.rate %></td>
+    <td><%= ticket.amount %></td>
     <td><%= link_to 'Show', ticket %></td>
     <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
     <td><%= link_to 'Destroy', ticket, confirm: 'Are you sure?', method: :delete %></td>
