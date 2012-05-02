@@ -11,11 +11,6 @@
 </p>
 
 <p>
-  <b>Purchased date:</b>
-  <%= @receipt.purchased_date %>
-</p>
-
-<p>
   <b>Purchased time:</b>
   <%= @receipt.purchased_time %>
 </p>
