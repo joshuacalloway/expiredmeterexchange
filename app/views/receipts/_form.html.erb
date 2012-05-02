@@ -1,41 +1,40 @@
 <%= form_for(@receipt) do |f| %>
-  <% if @receipt.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
-
-      <ul>
-      <% @receipt.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<table>
+  <thead>
+    <tr><td colspan="4"/>
+      <% if @receipt.errors.any? %>
+      <div id="error_explanation">
+	<h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+	
+	<ul>
+	  <% @receipt.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+	  <% end %>
+	</ul>
+      </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :email %>(required)<br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :cell_number %>(optional)<br />
-    <%= f.text_field :cell_number %>
-  </div>
-  <div class="field">
-    <%= f.label :rate %><br />
-    <%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
-  </div>
-  <div class="field">
-    <%= f.label :total_paid %><br />
-    <%= f.text_field :total_paid %>
-  </div>
-  <div class="field">
-    <%= f.label :purchased_time %><br />
-    <%= f.datetime_select :purchased_time %>
-  </div>
-  <div class="field">
-    <%= f.label :expiration_time %><br />
-    <%= f.datetime_select :expiration_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </thead>
+<tbody>
+  <tr>
+    <th><%= f.label :email %>(required) </th>
+    <td><%= f.text_field :email %></td>
+  <tr>
+    <th><%= f.label :cell_number %>(optional)</th>
+    <td><%= f.text_field :cell_number %></td>
+  <tr>
+    <th><%= f.label :rate %></th>
+    <td><%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></td>
+  <tr>
+    <th><%= f.label :total_paid %></th>
+    <td><%= f.text_field :total_paid %></td>
+  <tr>
+    <th><%= f.label :purchased_time %></th>
+    <th><%= f.datetime_select :purchased_time %></th>
+  <tr>
+    <th><%= f.label :expiration_time %></th>
+    <th><%= f.datetime_select :expiration_time %></th>
+  <tr>
+    <th><%= f.submit %>
+</tbody>
+</table>
 <% end %>
