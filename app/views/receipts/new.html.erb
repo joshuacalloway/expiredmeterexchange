@@ -1,4 +1,8 @@
 Enter your Meter Receipt, and someone will contact you if they need it
 
+<% if flash[:notice] %>
+    <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <%= render 'form' %>
 

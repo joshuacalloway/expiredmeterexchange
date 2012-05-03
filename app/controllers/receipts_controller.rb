@@ -60,7 +60,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts/new.json
   def new
     @receipt = Receipt.new
-
+    @receipt.email = params[:email]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @receipt }
@@ -78,7 +78,7 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.new(params[:receipt])
     respond_to do |format|
       if @receipt.save
-        format.html { redirect_to @receipt, notice: 'Receipt was successfully created.' }
+        format.html { redirect_to new_receipt_url, notice: 'Receipt was successfully created.', :email => @receipt.email }
         format.json { render json: @receipt, status: :created, location: @receipt }
       else
         format.html { render action: "new" }
