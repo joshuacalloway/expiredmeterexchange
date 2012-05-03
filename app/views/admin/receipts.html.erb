@@ -6,10 +6,12 @@
 
 <table>
   <tr>
+    <th>id</th>
     <th>Email</th>
     <th>Rate</th>
     <th>Purchased time</th>
     <th>Expiration time</th>
+  
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +19,7 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
+    <td><%= receipt.id %></td>
     <td><%= receipt.email %></td>
     <td><%= receipt.rate %></td>
     <td><%= receipt.purchased_time %></td>

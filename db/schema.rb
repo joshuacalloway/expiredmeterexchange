@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120502220508) do
+ActiveRecord::Schema.define(:version => 20120503051922) do
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "txn_id"
+    t.datetime "time"
+  end
 
   create_table "receipts", :force => true do |t|
     t.string   "email"
@@ -32,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20120502220508) do
     t.decimal  "rate"
     t.integer  "cell_number"
     t.decimal  "amount"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "receipt_id"
+    t.string   "buyer_email"
+    t.string   "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end

@@ -1,6 +1,24 @@
 class Receipt < ActiveRecord::Base
-  attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number
+  has_many :payment_notifications
+  attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :purchased_at
   validate :purchased_time_is_valid, :email_is_valid, :expiration_time_is_valid, :total_paid_is_valid
+
+  def paypal_url(transaction_id, return_url, payment_notification_url)
+    values = {
+      :business => 'joshua_1335998954_biz@gmail.com',
+      :cmd => '_cart',
+      :upload => 1,
+      :return => return_url,
+      :notify_url => payment_notification_url,
+      :invoice => transaction_id
+    }
+    values["amount_1"] = 1.0
+    values["item_name_1"] = "ContactInfoForMeterReceipt"
+    values["item_number_1"] = id
+    values["quantity_1"] = 1
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+  end
+
 
   def expiration_time_is_valid
     errors.add(:expiration_time, 'expiration time is not Right, please double check') if expiration_time <= purchased_time

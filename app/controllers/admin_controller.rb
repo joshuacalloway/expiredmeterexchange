@@ -9,6 +9,24 @@ class AdminController < ApplicationController
     end
   end
 
+  def payment_notifications
+    @payment_notifications = PaymentNotification.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @payment_notifications }
+    end
+  end
+
+  def transactions
+    @transactions = Transaction.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @transactions }
+    end
+  end
+
   def tickets
     @tickets = Ticket.all
 

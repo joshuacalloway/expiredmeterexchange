@@ -1,5 +1,6 @@
 Ptrexchange::Application.routes.draw do
 
+
   get "home/index"
   get "home/search"
   get "tickets/enter"
@@ -7,7 +8,13 @@ Ptrexchange::Application.routes.draw do
   get "receipts/createmultiple"
   get "admin/receipts"
   get "admin/tickets"
+  get "admin/payment_notifications"
+  get "admin/transactions"
 
+  get "payment_notifications/create"
+
+  resources :transactions
+  resources :payment_notifications
   resources :receipts
   resources :admin
   resources :tickets
