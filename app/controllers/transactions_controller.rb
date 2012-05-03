@@ -44,11 +44,11 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.save
-    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, transactions_url, payment_notifications_url)
-#    respond_to do |format|
+    return_url = home_paidreceipts_url + "?buyer_email="+@transaction.buyer_email
+#    return_url = transactions_url
 
-#      redirect_to Receipt.find(@transaction.receipt_id).paypal_url(transactions_url, payment_notifications_url)
-#    end
+    #    return_url = home_paidreceipts_url + "?buyer_email="+@transaction.buyer_email
+    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, return_url, payment_notifications_url)
   end
 
   # PUT /transactions/1

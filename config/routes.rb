@@ -3,6 +3,8 @@ Ptrexchange::Application.routes.draw do
 
   get "home/index"
   get "home/search"
+  get "home/paidreceipts"
+
   get "tickets/enter"
   get "receipts/enter"
   get "receipts/createmultiple"

@@ -1,0 +1,40 @@
+Your purchased receipts.<br>
+Please contact the owner to arrange payment/delivery
+
+<% @receipts.each do |receipt| %>
+
+<table>
+  <tr>
+    <th>Owner of receipt email</th>
+    <td><%= receipt.email %></td>
+  </tr>
+  <tr>
+    <th>Rate</th>
+    <td>$<%= receipt.rate %></td>
+  </tr>
+  <tr>
+    <th>Purchased time</th>
+    <td><%= receipt.purchased_time %></td>
+  </tr>
+  <tr>
+    <th>Expiration time</th>
+    <td><%= receipt.expiration_time %></td>
+  </tr>
+  <tr>
+    <th>Photo</th>
+  </tr>
+  <tr>
+    <td align="right" colspan-"2"><%= image_tag receipt.image.url %></td>
+  </tr>
+</table>
+<% end %>
+
+<%= paginate @receipts %>
+
+<!--
+for email - future reference 
+    <td><a style="font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;" href="<= receipt.mailto_link >">I want this one</a></td>
+-->
+
+
+
