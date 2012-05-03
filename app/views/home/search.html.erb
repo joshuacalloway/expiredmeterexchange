@@ -4,6 +4,9 @@ This Meter receipt meets your search
 
 <table>
   <tr>
+    <td colspan="2" align="left"><%= link_to 'Get this', new_transaction_path(:receipt_id => 2) %>
+  </tr>
+  <tr>
     <th>Rate</th>
     <td>$<%= receipt.rate %></td>
   </tr>
@@ -20,9 +23,6 @@ This Meter receipt meets your search
   </tr>
   <tr>
     <td align="right" colspan-"2"><%= image_tag receipt.image.url %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Get this', new_transaction_path(:receipt_id => 2) %>
   </tr>
 </table>
 <% end %>
