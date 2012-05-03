@@ -3,7 +3,7 @@
 <% if flash[:notice] %>
     <div id="notice"><%= flash[:notice] %></div>
 <% end %>
-
+<%= paginate @receipts %>
 <table>
   <tr>
     <th>id</th>

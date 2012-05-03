@@ -1,24 +1,33 @@
-<table>
-  <tr>
-    <th>
-    <th>Rate</th>
-    <th>Purchased time</th>
-    <th>Expiration time</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+This Meter receipt meets your search
 
 <% @receipts.each do |receipt| %>
+
+<table>
+  <tr>
+    <th>Rate</th>
+    <td>$<%= receipt.rate %></td>
+  </tr>
+  <tr>
+    <th>Purchased time</th>
+    <td><%= receipt.purchased_time %></td>
+  </tr>
+  <tr>
+    <th>Expiration time</th>
+    <td><%= receipt.expiration_time %></td>
+  </tr>
+  <tr>
+    <th>Photo</th>
+  </tr>
+  <tr>
+    <td align="right" colspan-"2"><%= image_tag receipt.image.url %></td>
+  </tr>
   <tr>
     <td><%= link_to 'Get this', new_transaction_path(:receipt_id => 2) %>
-    <td>$<%= receipt.rate %></td>
-    <td><%= receipt.purchased_time %></td>
-    <td><%= receipt.expiration_time %></td>
-
   </tr>
-<% end %>
 </table>
+<% end %>
+
+<%= paginate @receipts %>
 
 <!--
 for email - future reference 

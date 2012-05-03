@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def receipts
-    @receipts = Receipt.all
+    @receipts = Kaminari.paginate_array(Receipt.all).page(params[:page]).per(3)
 
     respond_to do |format|
       format.html # index.html.erb

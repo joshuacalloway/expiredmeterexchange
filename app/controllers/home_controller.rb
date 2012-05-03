@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def search
     @search = Search.new(Receipt, params)
-    @receipts = Receipt.search(@search)
+    @receipts = Kaminari.paginate_array(Receipt.search(@search)).page(params[:page]).per(1)
 
     if @receipts.length > 0
       respond_to do |format|

@@ -7,6 +7,7 @@
 <table>
   <tr>
     <th>
+    <th>id</th>
     <th>Rate</th>
     <th>Purchased time</th>
     <th>Expiration time</th>
@@ -18,6 +19,7 @@
 <% @receipts.each do |receipt| %>
   <tr>
     <td><a style="font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;" href="<%= receipt.mailto_link %>">I want this one</a></td>
+    <td><%= receipt.id %></td>
     <td><%= receipt.rate %></td>
     <td><%= receipt.purchased_time %></td>
     <td><%= receipt.expiration_time %></td>
