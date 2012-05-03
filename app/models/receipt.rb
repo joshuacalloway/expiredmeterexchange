@@ -4,7 +4,7 @@ class Receipt < ActiveRecord::Base
 
   attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
   validate :purchased_time_is_valid, :email_is_valid, :expiration_time_is_valid, :total_paid_is_valid
-  validates_attachment_size :image, :less_than => 1.megabytes
+  validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   def paypal_url(transaction_id, return_url, payment_notification_url)
