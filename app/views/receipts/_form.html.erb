@@ -1,4 +1,4 @@
-<%= form_for(@receipt) do |f| %>
+<%= form_for(@receipt, :html=> { :multipart => true } ) do |f| %>
 <table>
   <thead>
     <tr><td colspan="4"/>
@@ -33,6 +33,11 @@
   <tr>
     <th><%= f.label :expiration_time %></th>
     <th><%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5) %></th>
+  <tr/>
+  <tr/>
+  <tr>
+    <th><%= f.label :image %></th>
+    <th><%= f.file_field :image %></th>
   <tr>
     <th><%= f.submit %>
 </tbody>

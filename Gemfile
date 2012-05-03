@@ -44,3 +44,4 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem "eventmachine", "1.0.0.beta.2"
 
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'

@@ -10,7 +10,7 @@
     <th>Rate</th>
     <th>Purchased time</th>
     <th>Expiration time</th>
-    <th></th>
+    <th>Image</th>
     <th></th>
     <th></th>
   </tr>
@@ -21,6 +21,7 @@
     <td><%= receipt.rate %></td>
     <td><%= receipt.purchased_time %></td>
     <td><%= receipt.expiration_time %></td>
+    <td><%= image_tag receipt.image.url %></td>
     </tr>
 <% end %>
 </table>
