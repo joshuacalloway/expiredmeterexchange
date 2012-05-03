@@ -1,0 +1,32 @@
+
+<%= form_tag("/receipts/createmultiple", :method => "get") do %>
+
+<table>
+<thead>
+  <tr>
+  <th colspan="1" align="right">
+    Your Email: </th>
+  <td colspan="3"><%= text_field_tag('email', '', :size => 30) %></td>
+
+  <tr>
+    <th>Rate
+    <th>Paid
+    <th>Purchased Time
+    <th>Expiration Time
+</thead>
+<tbody>
+  <% @receipts.each_with_index do |receipt, index| %>
+  <tr>
+    <%= fields_for "receipt[#{index}]" do |r| %>
+    <td><%= r.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+    <td>$<%= r.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %></td>
+    <td><%= r.datetime_select :purchased_time, :default=> DateTime.now.advance(:minutes => -60) %>
+    <td><%= r.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5) %>
+  </tr>
+  <% end %>
+  <% end %>
+  <tr>
+    <th colspan="4"><%= submit_tag("Enter Meter Receipts") %>
+</tbody>
+</table>
+<% end %>

@@ -1,0 +1,3 @@
+curl -d "txn_id=0J351687AY040024P&invoice=18&payment_status=Complete" http://
+localhost:3000/payment_notifications
+

@@ -1,0 +1,3 @@
+class Transaction < ActiveRecord::Base
+  attr_accessible :buyer_email, :params, :receipt_id, :status
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  receipt_id: 1
+  buyer_email: MyString
+  params: MyText
+  status: MyString
+
+two:
+  receipt_id: 1
+  buyer_email: MyString
+  params: MyText
+  status: MyString
