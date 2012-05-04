@@ -8,14 +8,12 @@ Ptrexchange::Application.routes.draw do
   get "tickets/enter"
   get "receipts/enter"
   get "receipts/createmultiple"
-  get "admin/payment_notifications"
-  get "admin/transactions"
 #  get "admin/destroyreceipt"
 
   get "payment_notifications/create"
 
   namespace :admin do
-    resources :receipts, :tickets
+    resources :receipts, :tickets, :payment_notifications, :transactions
   end
 
   resources :transactions

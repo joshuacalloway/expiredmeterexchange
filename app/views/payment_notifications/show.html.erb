@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <b>Receipt:</b>
-  <%= @payment_notification.receipt_id %>
+  <b>transaction:</b>
+  <%= @payment_notification.transaction_id %>
 </p>
 
 <p>
@@ -21,5 +21,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_payment_notification_path(@payment_notification) %> |
-<%= link_to 'Back', payment_notifications_path %>
+<%= link_to 'Edit', edit_admin_payment_notification_path(@payment_notification) %> |
+<%= link_to 'Back', admin_payment_notifications_path %>
