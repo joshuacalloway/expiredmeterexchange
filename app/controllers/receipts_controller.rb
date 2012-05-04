@@ -103,15 +103,4 @@ class ReceiptsController < ApplicationController
     end
   end
 
-  # DELETE /receipts/1
-  # DELETE /receipts/1.json
-  def destroy
-    @receipt = Receipt.find(params[:id])
-    @receipt.destroy
-
-    respond_to do |format|
-      format.html { redirect_to receipts_url }
-      format.json { head :no_content }
-    end
-  end
 end

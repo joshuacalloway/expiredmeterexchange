@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def receipts
-    @receipts = Kaminari.paginate_array(Receipt.all).page(params[:page]).per(3)
+    @receipts = Kaminari.paginate_array(Receipt.all).page(params[:page]).per(100)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,5 +35,18 @@ class AdminController < ApplicationController
       format.json { render json: @tickets }
     end
   end
+
+  # DELETE /receipts/1
+  # DELETE /receipts/1.json
+  def destroyreceipt
+    @receipt = Receipt.find(params[:id])
+    @receipt.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_receipts_url }
+      format.json { head :no_content }
+    end
+  end
+
 
 end
