@@ -23,13 +23,23 @@ class Receipt < ActiveRecord::Base
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
 
-
+  
   def expiration_time_is_valid
-    errors.add(:expiration_time, 'expiration time is not Right, please double check') if expiration_time <= purchased_time
+    errors.add(:expiration_time, 'expiration time is not right, It should be greater then purchase time') if expiration_time <= purchased_time
+    errors.add(:expiration_time, 'expiration time is not right, Total time paid should be within 24 hours') if !is_total_time_reasonable
   end
 
   def purchased_time_is_valid
-    errors.add(:purchased_time, 'purchased time is not Right, please double check') if purchased_time > Time.now
+    errors.add(:purchased_time, 'purchased time is not right.  It should be in past') if purchased_time > Time.now
+    errors.add(:purchased_time, 'purchased time is not right.  It should be within last 3 months') if !is_purchased_time_reasonable
+  end
+
+  def is_purchased_time_reasonable
+    purchased_time > Time.now.advance(:days => -90)
+  end
+
+  def is_total_time_reasonable
+    (expiration_time - purchased_time) / 3600 < 24  # 24 hours
   end
 
   def total_paid_reasonable
@@ -42,10 +52,11 @@ class Receipt < ActiveRecord::Base
     expected_paid = (expiration_time - purchased_time ) / 3600 * rate
     expected_paid_range = expected_paid * 0.2
 
-    errors.add(:total_paid, 'total paid is not right.  Please double check ' + expected_paid.to_s) unless total_paid_reasonable
+    errors.add(:total_paid, 'total paid is not right.  Should be closer to $' + expected_paid.to_s) unless total_paid_reasonable
   end
+
   def email_is_valid
-    errors.add(:email, 'email is not Right, please double check') unless email =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/
+    errors.add(:email, 'email is not right.  It should be in format of XXXX@gmail.com') unless email =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/
   end
 
   def mailto_link
