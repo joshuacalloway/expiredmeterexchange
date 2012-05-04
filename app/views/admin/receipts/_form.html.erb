@@ -1,0 +1,45 @@
+<%= form_for(@receipt, :html=> { :multipart => true } ) do |f| %>
+<table>
+  <thead>
+    <tr><td colspan="4"/>
+      <% if @receipt.errors.any? %>
+      <div id="error_explanation">
+	<h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+	
+	<ul>
+	  <% @receipt.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+	  <% end %>
+	</ul>
+      </div>
+      <% end %>
+  </thead>
+<tbody>
+  <tr>
+    <th><%= f.label :email %>(required) </th>
+    <td><%= f.text_field :email %></td>
+  <tr>
+    <th><%= f.label :cell_number %>(optional)</th>
+    <td><%= f.text_field :cell_number %></td>
+  <tr>
+    <th><%= f.label :rate %></th>
+    <td><%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></td>
+  <tr>
+    <th><%= f.label :total_paid %></th>
+    <td>$<%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %></td>
+  <tr>
+    <th><%= f.label :purchased_time %></th>
+    <th><%= f.datetime_select :purchased_time, :default=> DateTime.now.advance(:minutes => -60) %></th>
+  <tr>
+    <th><%= f.label :expiration_time %></th>
+    <th><%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5) %></th>
+  <tr/>
+  <tr/>
+  <tr>
+    <th><%= f.label :image %></th>
+    <th><%= f.file_field :image %></th>
+  <tr>
+    <th><%= f.submit %>
+</tbody>
+</table>
+<% end %>

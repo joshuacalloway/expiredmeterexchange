@@ -1,0 +1,28 @@
+<h1>Listing tickets</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Cell Number</th>
+    <th>Ticket Time</th>
+    <th>Rate</th>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.email %></td>
+    <td><%= ticket.cell_number %></td>
+    <td><%= ticket.ticket_time %></td>
+    <td><%= ticket.rate %></td>
+    <td><%= ticket.amount %></td>
+    <td><%= link_to 'Show', admin_ticket_path(ticket) %></td>
+    <td><%= link_to 'Edit', edit_admin_ticket_path(ticket) %></td>
+    <td><%= link_to 'Destroy', admin_ticket_path(ticket), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
