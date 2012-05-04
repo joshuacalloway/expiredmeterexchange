@@ -20,6 +20,7 @@ Ptrexchange::Application.routes.draw do
   resources :transactions
   resources :receipts
   resources :tickets
+  resources :payment_notifications
 
   #match ':controller(/:action(/:id))(.:format)'
   #match 'search' => 'receipts#search'
