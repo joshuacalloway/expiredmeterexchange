@@ -43,8 +43,16 @@ class PaymentNotificationsController < ApplicationController
   # POST /payment_notifications
   # POST /payment_notifications.json
   def create
-    PaymentNotification.create!(:params => params, :transaction_id => params[:invoice], :status => params[:payment_status], :txn_id => params[:txn_id])
-    render :nothing => true
+    @payment_notification = PaymentNotification.new(params[:payment_notification])
+    respond_to do |format|
+      if @payment_notification.save
+        format.html { redirect_to admin_payment_notification_path(@payment_notification), notice: 'payment notification was successfully created.' }
+        format.json { render json: @payment_notification, status: :created, location: @payment_notification }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @payment_notification.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /payment_notifications/1

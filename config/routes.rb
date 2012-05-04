@@ -15,11 +15,13 @@ Ptrexchange::Application.routes.draw do
   namespace :admin do
     resources :receipts, :tickets, :payment_notifications, :transactions
   end
-
-  resources :transactions
-  resources :payment_notifications
+  
+  get "admin/index"
+  match 'admin' => 'admin#index'
+#  resources :transactions
+#  resources :payment_notifications
   resources :receipts
-  resources :admin
+#  resources :admin
   resources :tickets
 
   #match ':controller(/:action(/:id))(.:format)'

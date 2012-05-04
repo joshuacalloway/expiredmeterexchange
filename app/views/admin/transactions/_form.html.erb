@@ -1,4 +1,4 @@
-<%= form_for(@transaction) do |f| %>
+<%= form_for([:admin, @transaction]) do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>

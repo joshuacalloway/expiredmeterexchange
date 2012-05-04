@@ -59,7 +59,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to admin_transaction_path(@transaction), notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

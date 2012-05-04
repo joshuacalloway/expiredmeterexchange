@@ -94,7 +94,7 @@ class ReceiptsController < ApplicationController
 
     respond_to do |format|
       if @receipt.update_attributes(params[:receipt])
-        format.html { redirect_to @receipt, notice: 'Receipt was successfully updated.' }
+        format.html { redirect_to receipt_path(@receipt), notice: 'Receipt was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

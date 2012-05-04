@@ -1,4 +1,4 @@
-<%= form_for(@payment_notification) do |f| %>
+<%= form_for([:admin,@payment_notification]) do |f| %>
   <% if @payment_notification.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@payment_notification.errors.count, "error") %> prohibited this payment_notification from being saved:</h2>

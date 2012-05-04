@@ -45,9 +45,6 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(params[:transaction])
     @transaction.save
     return_url = home_paidreceipts_url + "?buyer_email="+@transaction.buyer_email
-#    return_url = transactions_url
-
-    #    return_url = home_paidreceipts_url + "?buyer_email="+@transaction.buyer_email
     redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, return_url, payment_notifications_url)
   end
 
