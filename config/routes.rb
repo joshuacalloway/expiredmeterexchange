@@ -8,7 +8,6 @@ Ptrexchange::Application.routes.draw do
   get "tickets/enter"
   get "receipts/enter"
   get "receipts/createmultiple"
-#  get "admin/destroyreceipt"
 
   get "payment_notifications/create"
 
@@ -18,10 +17,8 @@ Ptrexchange::Application.routes.draw do
   
   get "admin/index"
   match 'admin' => 'admin#index'
-#  resources :transactions
-#  resources :payment_notifications
+  resources :transactions
   resources :receipts
-#  resources :admin
   resources :tickets
 
   #match ':controller(/:action(/:id))(.:format)'
