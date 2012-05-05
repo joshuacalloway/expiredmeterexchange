@@ -14,9 +14,16 @@ class HomeController < ApplicationController
   end
 
   def search
+    @transaction = Transaction.new
+
     @search = Search.new(Receipt, params)
     @receipts = Kaminari.paginate_array(Receipt.search(@search)).page(params[:page]).per(1)
 
+    if params[:page]
+      @transaction.receipt_id = @receipts[0].id
+    else
+      @transaction.receipt_id = @receipts[0].id
+    end
     if @receipts.length > 0
       respond_to do |format|
         format.html # index.html.erb
