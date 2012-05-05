@@ -17,7 +17,8 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(params[:transaction])
-    return_url = home_paidreceipts_url + "?buyer_email="+@transaction.buyer_email
-    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, return_url, payment_notifications_url)
+#    @transaction.buyer_email = "unverified@gmail.com"
+    @transaction.save
+    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, home_paidreceipts_url, payment_notifications_url)
   end
 end
