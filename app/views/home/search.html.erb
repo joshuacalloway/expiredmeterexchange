@@ -12,11 +12,11 @@ This Meter receipt meets your search
   </tr>
   <tr>
     <th>Purchased time</th>
-    <td><%= receipt.purchased_time %></td>
+    <td><%= receipt.purchased_time.to_s(:long) %></td>
   </tr>
   <tr>
     <th>Expiration time</th>
-    <td><%= receipt.expiration_time %></td>
+    <td><%= receipt.expiration_time.to_s(:long) %></td>
   </tr>
   <tr>
     <th>Photo</th>
