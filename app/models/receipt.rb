@@ -3,8 +3,9 @@ class Receipt < ActiveRecord::Base
   has_attached_file :image, :url => "/assets/receipts/:id/:basename.:extension", :path => ":rails_root/public/assets/receipts/:id/:basename.:extension"
 
   attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
-  validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid
   validates :email, :presence => true, :email_format => true
+  validates :total_paid, :presence => true
+  validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
@@ -44,9 +45,13 @@ class Receipt < ActiveRecord::Base
   end
 
   def total_paid_reasonable
-    expected_paid = (expiration_time - purchased_time ) / 3600 * rate
-    expected_paid_range = expected_paid * 0.2
-    total_paid < expected_paid + expected_paid_range && total_paid > expected_paid - expected_paid_range
+    if total_paid
+      expected_paid = (expiration_time - purchased_time ) / 3600 * rate
+      expected_paid_range = expected_paid * 0.2
+      total_paid < expected_paid + expected_paid_range && total_paid > expected_paid - expected_paid_range
+    else
+      false
+    end
   end
 
   def total_paid_is_valid
