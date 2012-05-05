@@ -7,6 +7,7 @@ class PaymentNotification < ActiveRecord::Base
   def mark_receipt_as_purchased
     if status.eql? "Completed"
       t = Transaction.find(transaction_id)
+      t.update_attribute(:buyer_email, params[:payer_email])
       t.update_attribute(:status, "paid at paypal")
     end
   end
