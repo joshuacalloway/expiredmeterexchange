@@ -19,12 +19,8 @@ class HomeController < ApplicationController
     @search = Search.new(Receipt, params)
     @receipts = Kaminari.paginate_array(Receipt.search(@search)).page(params[:page]).per(1)
 
-    if params[:page]
-      @transaction.receipt_id = @receipts[0].id
-    else
-      @transaction.receipt_id = @receipts[0].id
-    end
     if @receipts.length > 0
+      @transaction.receipt_id = @receipts[0].id
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @receipts }
