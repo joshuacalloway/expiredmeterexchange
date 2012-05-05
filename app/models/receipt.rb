@@ -9,6 +9,11 @@ class Receipt < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
+  def cell_number=(num)
+    num.gsub!(/\D/,'') if num.is_a?(String)
+    super(num)
+  end
+
   def paypal_url(transaction_id, return_url, payment_notification_url)
     values = {
       :business => 'joshua_1335998954_biz@gmail.com',
