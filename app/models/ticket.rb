@@ -2,6 +2,11 @@ class Ticket < ActiveRecord::Base
   attr_accessible :email, :ticket_time, :rate, :cell_number, :amount
   validate :ticket_time_is_valid, :email_is_valid, :amount_is_valid
 
+  def cell_number=(num)
+    num.gsub!(/\D/,'') if num.is_a?(String)
+    super(num)
+  end
+
   # amount is usually 50 or 60 
   def amount_is_valid
     errors.add(:amount, 'ticket amount is not right.  Please double check') if amount < 40 || amount > 200
