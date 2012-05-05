@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20120503064431) do
   create_table "payment_notifications", :force => true do |t|
     t.text     "params"
     t.string   "status"
-    t.string   "transaction_id"
+    t.integer  "transaction_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "txn_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120503064431) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.decimal  "total_paid"
-    t.decimal  "cell_number"
+    t.integer  "cell_number"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
