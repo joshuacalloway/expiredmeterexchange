@@ -7,6 +7,7 @@
   <tr>
     <th>id</th>
     <th>Email</th>
+    <th>Cell</th>
     <th>Rate</th>
     <th>Paid</th>
     <th>Purchased time</th>
@@ -21,6 +22,7 @@
   <tr>
     <td><%= receipt.id %></td>
     <td><%= receipt.email %></td>
+    <td><%= receipt.cell_number %></td>
     <td><%= receipt.rate %></td>
     <td><%= receipt.total_paid %></td>
     <td><%= receipt.purchased_time.to_s(:long) %></td>
