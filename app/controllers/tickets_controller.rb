@@ -58,8 +58,8 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(params[:ticket])
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render json: @ticket, status: :created, location: @ticket }
+        format.html { redirect_to home_welcome_path, notice: 'Ticket was successfully created.' }
+        format.json { render json: home_welcome_path, status: :created, location: @ticket }
       else
         format.html { render action: "new" }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
