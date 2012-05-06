@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503064431) do
+ActiveRecord::Schema.define(:version => 20120506025129) do
 
   create_table "payment_notifications", :force => true do |t|
     t.text     "params"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120503064431) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.decimal  "total_paid"
-    t.integer  "cell_number"
+    t.string   "cell_number"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20120503064431) do
     t.datetime "updated_at",  :null => false
     t.datetime "ticket_time"
     t.decimal  "rate"
-    t.integer  "cell_number"
+    t.string   "cell_number"
     t.decimal  "amount"
   end
 
