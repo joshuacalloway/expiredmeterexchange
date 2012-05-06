@@ -11,6 +11,18 @@ class TicketsController < ApplicationController
     end
   end
 
+  # GET /tickets/new
+  # GET /tickets/new.json
+  def matched
+# select t.* from tickets t, receipts r where t.ticket_time between r.purchased_time and r.expiration_time and t.rate <= r.rate;
+#    @tickets = Ticket.find_all_by_sql("select t.* from tickets t, receipts r where t.ticket_time between r.purchased_time and r.expiration_time and t.rate <= r.rate")
+    @tickets = Ticket.select("distinct tickets.*").joins('JOIN receipts on tickets.ticket_time between receipts.purchased_time and receipts.expiration_time and tickets.rate <= receipts.rate')
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @tickets }
+    end
+  end
+
   # GET /tickets/1
   # GET /tickets/1.json
   def show
