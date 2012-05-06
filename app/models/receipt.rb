@@ -15,7 +15,7 @@ class Receipt < ActiveRecord::Base
   end
 
   def steps
-    %w[contact meterdetails meterimage]
+    %w[meterimage contact meterdetails]
   end
 
   def next_step

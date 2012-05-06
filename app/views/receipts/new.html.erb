@@ -4,7 +4,9 @@
 
 <%= form_for(@receipt, :validate=>true, :html=> { :multipart => true } ) do |f| %>
   <%= render "#{@receipt.current_step}_step", :f => f%>
-  <p><%= f.submit "Continue" %></p>
+  <p><%= f.submit "Continue" unless @receipt.last_step? %></p>
+  <p><%= f.submit "I'm Done" if @receipt.last_step? %></p>
+
 <% end %>
 
 
