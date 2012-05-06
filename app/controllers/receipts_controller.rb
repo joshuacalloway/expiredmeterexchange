@@ -59,12 +59,15 @@ class ReceiptsController < ApplicationController
   # GET /receipts/new
   # GET /receipts/new.json
   def new
-    @receipt = Receipt.new
-    @receipt.email = params[:email]
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @receipt }
-    end
+    session[:receipt_params] ||= {}
+    @receipt = Receipt.new(session[:receipt_params])
+#    @receipt.email = params[:email]
+    @receipt.current_step = session[:receipt_step]
+
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @receipt }
+#    end
   end
 
   # GET /receipts/1/edit
@@ -75,15 +78,23 @@ class ReceiptsController < ApplicationController
   # POST /receipts
   # POST /receipts.json
   def create
-    @receipt = Receipt.new(params[:receipt])
-    respond_to do |format|
-      if @receipt.save
-        format.html { redirect_to new_receipt_url, notice: 'Receipt was successfully created.', :email => @receipt.email }
-        format.json { render json: @receipt, status: :created, location: @receipt }
+    session[:receipt_params].deep_merge!(params[:receipt]) if params[:receipt]
+    @receipt = Receipt.new(session[:receipt_params])
+    @receipt.current_step = session[:receipt_step]
+    if @receipt.valid?
+      if @receipt.last_step?
+        @receipt.save
       else
-        format.html { render action: "new" }
-        format.json { render json: @receipt.errors, status: :unprocessable_entity }
+        @receipt.next_step
       end
+      session[:receipt_step] = @receipt.current_step
+    end
+    if ! @receipt.new_record?
+      session[:receipt_params] = nil
+      flash[:notice] = "Receipt saved."
+      redirect_to home_welcome_path
+    else
+      redirect_to new_receipt_url
     end
   end
 

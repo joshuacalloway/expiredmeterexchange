@@ -1,18 +1,40 @@
 class Receipt < ActiveRecord::Base
   has_many :payment_notifications
   has_attached_file :image, :url => "/assets/receipts/:id/:basename.:extension", :path => ":rails_root/public/assets/receipts/:id/:basename.:extension"
-
   attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
+  attr_writer :current_step
   validates :email, :presence => true, :email_format => true
-  validates :total_paid, :presence => true
-  validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid
-  validates_attachment_size :image, :less_than => 5.megabytes
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  validates :total_paid, :presence => true, :if => lambda { |r| r.current_step == "meterdetails" }
+  validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid, :if => lambda { |r| r.current_step == "meterdetails" }
+  validates_attachment_size :image, :less_than => 5.megabytes, :if => lambda { |r| r.current_step == "meterdetails" }
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :if => lambda { |r| r.current_step == "meterdetails" }
 
-  def cell_number=(num)
-    num.gsub!(/\D/,'') if num.is_a?(String)
-    super(num)
+
+  def current_step
+    @current_step || steps.first
   end
+
+  def steps
+    %w[contact meterdetails]
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def first_step?
+    current_step == steps.first
+  end
+
+  def last_step?
+    current_step == steps.last
+  end
+
+
+#  def cell_number=(num)
+#    num.gsub!(/\D/,'') if num.is_a?(String)
+#    super(num)
+#  end
 
   def paypal_url(transaction_id, return_url, payment_notification_url)
     values = {

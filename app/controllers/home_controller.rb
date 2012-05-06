@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   def index
   end
 
+  def welcome
+    session[:receipt_step] = nil
+  end
+
   def paidreceipts
 # select r.* from receipts r, transactions t where t.receipt_id = r.id and t.buyer_email = 'dgorodess@gmail.com' and t.status='paid at paypal'
     buyer_email = params[:buyer_email]

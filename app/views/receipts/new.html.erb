@@ -1,8 +1,10 @@
-Enter your Meter Receipt, and someone will contact you if they need it
-
 <% if flash[:notice] %>
     <div id="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= render 'form' %>
+<%= form_for(@receipt, :validate=>true, :html=> { :multipart => true } ) do |f| %>
+  <%= render "#{@receipt.current_step}_step", :f => f%>
+  <p><%= f.submit "Continue" %></p>
+<% end %>
+
 
