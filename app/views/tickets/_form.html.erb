@@ -17,27 +17,25 @@
   </thead>
   <tbody>
     <tr>
-      <th><%= f.label :email %></th>
+      <th align="right"><%= f.label :email %></th>
       <td><%= f.text_field :email %></td>
     <tr>
-      <th><%= f.label :cell_number %> (optional)</th>
+      <th align="right"><%= f.label :cell_number %> (optional)</th>
       <td><%= f.text_field :cell_number %></td>
-    <tr>
-      <th><%= f.label :rate %></th>
-      <td><%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></td>
     </tr>
     <tr>
-      <th><%= f.label :amount %></th>
+      <th align="right"><%= f.label :amount, "Amount of Ticket" %></th>
       <td>$<%= f.number_field :amount, :step=>5, :min=>50, :max=>150.00 %></td>
     </tr>
-
+    <%= f.hidden_field :rate %>
+    <%= f.hidden_field :ticket_time %>
+      <!--
+      <td>< f.datetime_select :ticket_time, :discard_year => true ></td>
+-->
     <tr>
-      <th><%= f.label :ticket_time %></th>
-      <td><%= f.datetime_select :ticket_time %></td>
-    <tr>
-      <th>
+      <th colspan="2" align="center">
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Contact me when you get a Meter Receipt" %>
   </div>
   </tbody>
   </table>
