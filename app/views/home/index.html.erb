@@ -6,7 +6,7 @@ Search for Parking Meter Receipts
   <input type="hidden" name="page" value="1"/>
   <tr><th align="left"><%= label_tag(:rate, "Rate:") %><%= select_tag(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></th></tr>
   <tr><th align="left"><%= label_tag(:ticket_time, "Ticket Time:") %></th></tr>
-  <tr><td colspan="2"><%= select_datetime DateTime.now.advance(:minutes => -30), :prefix=> :ticket_time %></td></tr>
+  <tr><td colspan="2"><%= select_datetime DateTime.now.advance(:minutes => -30), :prefix=> :ticket_time, :discard_year=> true %></td></tr>
   <tr><th colspan="2" align="left"><%= submit_tag("Search Meter Receipts") %></th></tr>
 </table>
 <% end %>
