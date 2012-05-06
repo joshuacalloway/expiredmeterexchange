@@ -1,13 +1,9 @@
-Purchase the contact info for this meter receipt<br>
-Cost $1 ( PayPal )
-
 <% @receipts.each do |receipt| %>
 
 <table>
   <tr>
     <%= form_for(@transaction) do |f| %>
-    <th><%= f.label :receipt_id %></th>
-    <td><%= f.number_field :receipt_id %></td>
+    <%= f.hidden_field :receipt_id %>
   </tr>
   <tr><th><%= f.submit "Pay $1 at PayPal" %></th></tr>
 <% end %>
@@ -33,6 +29,17 @@ Cost $1 ( PayPal )
 <% end %>
 
 <%= paginate @receipts %>
+
+
+<h3>---- The Fine Print ----</h3>
+After you submit payment, you will be able to view the<br>
+email and/or the phone number of fellow Chicagoan that<br>
+owns this receipt.  <p>
+
+It's very likely that person may request an <br>
+an additional amount for the receipt.<br>
+(The suggested amount is $5 bucks )<br>
+<p>
 
 <!--
 for email - future reference 
