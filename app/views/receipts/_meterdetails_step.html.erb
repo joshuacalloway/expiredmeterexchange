@@ -1,0 +1,39 @@
+<h3>Enter Meter Details<br>( Last Step )</h3>
+<p>
+<table>
+<tr>
+<th align="right">
+<%= f.label :rate %></th>
+<td>
+<%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
+</td>
+<th align="right">
+<%= f.label :total_paid %></th>
+<td>
+$<%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %>
+</td>
+</tr>
+<tr>
+<th align="right">
+<%= f.label :purchased_time %></th>
+<td colspan="4">
+<%= f.datetime_select :purchased_time, :default=> DateTime.now.advance(:minutes => -60), :discard_year => true %>
+</td>
+ 
+</tr>
+<tr>
+<th align="right">
+<%= f.label :expiration_time %></th>
+<td colspan="4">
+<%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5), :discard_year => true %>
+</td>
+</tr>
+<tr> 
+<th align="right">
+<%= f.label :image %></th>
+<td>
+<%= f.file_field :image %>
+</td>
+</tr>
+</table>
+ 
