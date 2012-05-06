@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506025129) do
+ActiveRecord::Schema.define(:version => 20120506030955) do
 
   create_table "payment_notifications", :force => true do |t|
     t.text     "params"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(:version => 20120506025129) do
     t.string   "status"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "cell_number"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
