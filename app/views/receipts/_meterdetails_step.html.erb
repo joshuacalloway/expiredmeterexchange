@@ -28,12 +28,5 @@ $<%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %>
 <%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5), :discard_year => true %>
 </td>
 </tr>
-<tr> 
-<th align="right">
-<%= f.label :image %></th>
-<td>
-<%= f.file_field :image %>
-</td>
-</tr>
 </table>
  
