@@ -78,6 +78,7 @@ class ReceiptsController < ApplicationController
     if @receipt.valid?
       if @receipt.last_step?
         @receipt.save
+        UserMailer.receiptavailable_email(@receipt)
       else
         @receipt.next_step
       end

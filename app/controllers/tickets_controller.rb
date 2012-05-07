@@ -58,7 +58,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(params[:ticket])
     respond_to do |format|
       if @ticket.save
-        UserMailer.welcome_email(@ticket).deliver
         format.html { redirect_to home_welcome_path, notice: 'Ticket was successfully created.' }
         format.json { render json: home_welcome_path, status: :created, location: @ticket }
       else
