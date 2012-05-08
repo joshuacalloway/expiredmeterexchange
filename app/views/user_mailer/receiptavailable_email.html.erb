@@ -6,9 +6,12 @@
   <body>
     <h1>The following parking meter receipt has shown up at www.expiredmeterexchange.com</h1>
     <p>
+      <%= link_to "Avoid the boot.  Find a meter receipt to get out of your ticket", receipt_url(@receipt) %><br>
+      <%= link_to image_tag("images/boot1.jpg"), receipt_url(@receipt) %>
+
       visit the site to claim this meter receipt<br/>
       <% @time = @receipt.purchased_time.advance(:minutes => 1) %>
-      <%= receipt_url(@receipt) %>
+      
     </p>
     <p>
       rate : <%= @receipt.rate %><br/>

@@ -14,6 +14,7 @@ Ptrexchange::Application.routes.draw do
   get "payment_notifications/create"
   get "admin/tickets/matched"
   get "admin/send_welcome_email"
+  get "admin/send_matched_receipt_email"
   namespace :admin do
     resources :receipts, :tickets, :payment_notifications, :transactions
   end
