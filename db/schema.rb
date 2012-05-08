@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506030955) do
+ActiveRecord::Schema.define(:version => 20120508221113) do
 
   create_table "payment_notifications", :force => true do |t|
     t.text     "params"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20120506030955) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "state_id"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "tickets", :force => true do |t|

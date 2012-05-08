@@ -1,14 +1,16 @@
 class Receipt < ActiveRecord::Base
   has_many :payment_notifications
+  belongs_to :state
   has_attached_file :image, :url => "/assets/receipts/:id/:basename.:extension", :path => ":rails_root/public/assets/receipts/:id/:basename.:extension"
-  attr_accessible :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
+  attr_accessible :state, :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
   attr_writer :current_step
   validates :email, :presence => true, :email_format => true, :if => lambda { |r| r.current_step == "contact" }
   validates :total_paid, :presence => true, :if => lambda { |r| r.current_step == "meterdetails" }
   validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid, :if => lambda { |r| r.current_step == "meterdetails" }
   validates_attachment_size :image, :less_than => 5.megabytes, :if => lambda { |r| r.current_step == "meterimage" }
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :if => lambda { |r| r.current_step == "meterimage" }
-
+  before_save :default_values
+  
   def current_step
     @current_step || steps.first
   end
@@ -88,5 +90,11 @@ class Receipt < ActiveRecord::Base
   def self.search(search)
     self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate", search.conditions)
   end
+
+  private
+  def default_values
+    self.state ||= State.NONE
+  end  
+  
 
 end
