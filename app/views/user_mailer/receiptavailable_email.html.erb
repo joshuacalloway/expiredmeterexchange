@@ -7,7 +7,7 @@
     <h1>The following parking meter receipt has shown up at www.expiredmeterexchange.com</h1>
     <p>
       visit the site to claim this meter receipt<br/>
-      <% @time = @receipt.purchased_time.advance(:minutes => 1)
+      <% @time = @receipt.purchased_time.advance(:minutes => 1) %>
       <%= receipt_url(@receipt) %>
     </p>
     <p>
