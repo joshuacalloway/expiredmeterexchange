@@ -1,26 +1,45 @@
-<p id="notice"><%= notice %></p>
+<table>
+  <tr>
+    <%= form_for(@transaction) do |f| %>
+    <%= f.hidden_field :receipt_id %>
+  </tr>
+  <tr><th><%= f.submit "Pay $1 at PayPal" %></th></tr>
+<% end %>
+  <tr>
+    <th>Rate</th>
+    <td>$<%= @receipt.rate %></td>
+  </tr>
+  <tr>
+    <th>Purchased time</th>
+    <td><%= @receipt.purchased_time.to_s(:long) %></td>
+  </tr>
+  <tr>
+    <th>Expiration time</th>
+    <td><%= @receipt.expiration_time.to_s(:long) %></td>
+  </tr>
+  <tr>
+    <th>Photo</th>
+  </tr>
+  <tr>
+    <td align="right" colspan-"2"><%= image_tag @receipt.image.url %></td>
+  </tr>
+</table>
 
-<p>
-  <b>Rate:</b>
-  <%= @receipt.rate %>
-</p>
-<p>
-  <b>Paid:</b>
-  <%= @receipt.total_paid %>
-</p>
 
-<p>
-  <b>Purchased:</b>
-  <%= @receipt.purchased_time %>
-</p>
+<h3>---- The Fine Print ----</h3>
+After you submit payment, you will be able to view the<br>
+email and/or the phone number of fellow Chicagoan that<br>
+owns this receipt.  <p>
 
+It's very likely that person may request an <br>
+an additional amount for the receipt.<br>
+(The suggested amount is $5 bucks )<br>
 <p>
-  <b>Expired:</b>
-  <%= @receipt.expiration_time %>
-</p>
 
-<a style="font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;" href="<%= @receipt.mailto_link %>">Yep, this receipt will do it</a>
+<!--
+for email - future reference 
+    <td><a style="font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;" href="<= receipt.mailto_link >">I want this one</a></td>
+-->
 
-</form>
-<p>
-<p>
+
+
