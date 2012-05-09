@@ -1,32 +1,54 @@
+<style type="text/css">
+.LARGER_METERRECEIPT_FONT {font-size:20pt;}
+.GREEN {color: rgb(0,220,98);}
+.SMALLGREEN {font-size:6pt;color: rgb(0,220,98);}
+
+</style>
+
 <h3>Enter Meter Details<br>( Last Step )</h3>
 <p>
-<table>
+<table border="2" style="border-width: 1px; border-color:#000000;
+border-style: solid;">
 <tr>
-<th align="right">
-<%= f.label :rate %></th>
-<td>
-<%= f.select(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %>
-</td>
-<th align="right">
-<%= f.label :total_paid %></th>
-<td>
-$<%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %>
-</td>
+<td colspan="5" class="GREEN">Valid at any pay box with same or lesser hourly RATE, until expired</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td colspan="3">Motorcycle Plate No:_ _ _ _ _ _ _</td>
 </tr>
 <tr>
 <th align="right">
-<%= f.label :purchased_time %></th>
-<td colspan="4">
+
+<td rowspan="2" colspan="1">
+<%= f.select(:rate, options_for_select([['1.75',1.75],['3.50',3.5],['5.75',5.75]]), {}, { :style => 'font-size:20pt;' }) %>
+</td>
+<td align="left">Paid:$ <%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %>
+15:39</td>
+</tr>
+<tr>
+<td>
+<td>ID: 123456 05/04/12
+</tr>
+<tr>
+<td>
+<td colspan="5"><table border="1" style="border-width: 1px; border-color:#000000;
+border-style: dashed;">
+<td colspan="2">
 <%= f.datetime_select :purchased_time, :default=> DateTime.now.advance(:minutes => -60), :discard_year => true %>
 </td>
  
 </tr>
 <tr>
-<th align="right">
-<%= f.label :expiration_time %></th>
-<td colspan="4">
-<%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5), :discard_year => true %>
+<td colspan="2">
+<%= f.datetime_select :expiration_time, :default=> DateTime.now.advance(:minutes => -5), :discard_year => true, %>
 </td>
+</tr>
+<tr>
+<td>Expiration Time
+<td>Valid Date
+</tr>
+</table>
+<tr><td><td>79780<td align="right">$3.50/hr
+<tr><td class="GREEN" rowspan="2">LAZ<td class="SMALLGREEN">OPERATED BY LAZ PARKING&nbsp;&nbsp;&nbsp;chicagometers.com&nbsp;&nbsp;&nbsp;877.242.7901<br>PLACE THIS SIDE UP ON DASHBOARD CURBSIDE&nbsp;&nbsp;&nbsp;SEE DIRECTIONS ON REVERSE
 </tr>
 </table>
  
