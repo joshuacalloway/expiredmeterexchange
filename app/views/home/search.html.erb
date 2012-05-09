@@ -31,6 +31,9 @@ border-style: solid;">
 <%= receipt.rate %>
 </td>
 <td align="left">Paid:$ <%= receipt.total_paid %>
+<%= "%02d" % receipt.purchased_time.hour %>:<%= "%02d" % receipt.purchased_time.min %>
+</tr>
+
 </tr>
 <tr>
 <td>
