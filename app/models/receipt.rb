@@ -89,7 +89,8 @@ class Receipt < ActiveRecord::Base
 
   # state_id 1 is NONE
   def self.search(search)
-    self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate and state_id = 1", search.conditions)
+    valid_state = State.NONE.id
+    self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate and state_id = #{valid_state}", search.conditions)
   end
 
   private

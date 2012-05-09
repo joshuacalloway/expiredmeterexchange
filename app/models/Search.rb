@@ -30,9 +30,7 @@ class Search
     c = {}
     c[:rate] = (rate.to_f-0.01).to_s
     c[:purchased_time_start] = time_from_options(ticket_time.merge({ :hour=>0, :minute=>0,:second=>0}))
-#to_date(date_from_options(ticket_time) + ' 00:00:00')
     c[:purchased_time_end] = time_from_options(ticket_time)
-
     c[:expiration_time_start] = time_from_options(ticket_time)
     c
   end
@@ -43,12 +41,9 @@ class Search
 
   def time_from_options(which)
     Time.new(which[:year], which[:month], which[:day], which[:hour], which[:minute], 0, "-05:00")
-#    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day] + " " + which[:hour] + ":" + which[:minute] + ":00"
   end
 
   def date_from_options(which)
     Date.new(which[:year], which[:month], which[:day])
-
-#    which[:year] + "-" +("%02d" % which[:month]) + "-" + which[:day]
   end
 end
