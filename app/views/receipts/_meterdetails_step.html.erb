@@ -22,24 +22,11 @@ border-style: solid;">
 <%= f.select(:rate, options_for_select([['1.75',1.75],['3.50',3.5],['5.75',5.75]]), {}, { :style => 'font-size:24pt;' }) %>
 </td>
 <td align="left">Paid:$ <%= f.number_field :total_paid, :step=>0.01, :min=>0.01, :max=>150.00 %>
-<%= hour_select("receipt_purchased_time_4i", "receipt[purchased_time(4i)]") %>:<%= minute_select "receipt_purchased_time_5i", "receipt[purchased_time(5i)]" %></td>
+<%= hour_select("receipt_purchased_time_4i", "receipt[purchased_time(4i)]", Time.now.hour) %>:<%= minute_select "receipt_purchased_time_5i", "receipt[purchased_time(5i)]" %></td>
 </tr>
 <tr>
 <td>
-<td>ID: 123456 <select id="receipt_purchased_time_2i" name="receipt[purchased_time(2i)]">
-<option value="1">01</option>
-<option value="2">02</option>
-<option value="3">03</option>
-<option value="4">04</option>
-<option selected="selected" value="5">05</option>
-<option value="6">06</option>
-<option value="7">07</option>
-<option value="8">08</option>
-<option value="9">09</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="12">12</option>
-</select>/<%= day_select "receipt_purchased_time_3i", "receipt[purchased_time(3i)]" %>/12
+<td>ID: 123456 <%= month_select "receipt_purchased_time_2i", "receipt[purchased_time(2i)]" %>/<%= day_select "receipt_purchased_time_3i", "receipt[purchased_time(3i)]" %>/12
 </tr>
 <tr>
 <td>
@@ -47,25 +34,12 @@ border-style: solid;">
 
 </tr>
 <tr>
-<td rowspan="2" class="LARGER_METERRECEIPT_FONT"><%= hour_select "receipt_expiration_time_4i", "receipt[expiration_time(4i)]", "LARGER_METERRECEIPT_FONT" %>
-:<%= minute_select "receipt_expiration_time_5i", "receipt[expiration_time(5i)]", "LARGER_METERRECEIPT_FONT" %>
+<td rowspan="2" class="LARGER_METERRECEIPT_FONT"><%= hour_select "receipt_expiration_time_4i", "receipt[expiration_time(4i)]", Time.now.hour, "LARGER_METERRECEIPT_FONT" %>
+:<%= minute_select "receipt_expiration_time_5i", "receipt[expiration_time(5i)]", Time.now.min, "LARGER_METERRECEIPT_FONT" %>
 </td>
 <td>
-<select id="receipt_expiration_time_2i" name="receipt[expiration_time(2i)]">
-<option value="1">JAN</option>
-<option value="2">FEB</option>
-<option value="3">MAR</option>
-<option value="4">APR</option>
-<option selected="selected" value="5">MAY</option>
-<option value="6">JUN</option>
-<option value="7">JUL</option>
-<option value="8">AUG</option>
-<option value="9">SEP</option>
-<option value="10">OCT</option>
-<option value="11">NOV</option>
-<option value="12">DEC</option>
-</select>
-<td rowspan="2"><%= day_select "receipt_expiration_time_3i", "receipt[expiration_time(3i)]", "LARGER_METERRECEIPT_FONT" %>
+  <%= month_abbrev_select "receipt_expiration_time_2i", "receipt[expiration_time(2i)]" %>
+<td rowspan="2"><%= day_select "receipt_expiration_time_3i", "receipt[expiration_time(3i)]", Time.now.day, "LARGER_METERRECEIPT_FONT" %>
 <td>12
 </tr>
 <tr>
