@@ -87,8 +87,9 @@ class Receipt < ActiveRecord::Base
     "mailto:"+email + "?Subject=I want to buy your Parking Meter Receipt that you posted on http://pmrexchange.com&Body=I'd like to pay suggested value of $5.00 for your receipt.%0AThe receipt is for " + purchased_time.to_s + " at #{rate} rate%0APlease provide me a paypal or another easy method for me to get this money to you.%0AYou can then send the receipt to my mailing address at One XXX street, chicago IL 6XXXX.%0A%0AThank you very much"
   end
 
+  # state_id 1 is NONE
   def self.search(search)
-    self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate", search.conditions)
+    self.where("purchased_time <= :purchased_time_end and expiration_time >= :expiration_time_start and rate >= :rate and state_id = 1", search.conditions)
   end
 
   private

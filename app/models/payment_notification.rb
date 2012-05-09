@@ -9,6 +9,9 @@ class PaymentNotification < ActiveRecord::Base
       t = Transaction.find(transaction_id)
       t.update_attribute(:buyer_email, params[:payer_email])
       t.update_attribute(:status, "paid at paypal")
+      r = Receipt.find(t.receipt_id)
+      r.state = State.PAYPAL_PAID
+      r.save
     end
   end
 end
