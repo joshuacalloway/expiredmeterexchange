@@ -52,7 +52,7 @@ border-style: solid;">
 <td>12
 </tr>
 <tr>
-<td>PM
+<td><%= receipt.expiration_time.hour < 12? "AM" : "PM" %>
 <tr>
 <td>Expiration Time
 <td><td>Valid Date
