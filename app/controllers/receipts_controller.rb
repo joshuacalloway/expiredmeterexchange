@@ -64,6 +64,12 @@ class ReceiptsController < ApplicationController
     session[:receipt_params] ||= {}
     @receipt = Receipt.new(session[:receipt_params])
     @receipt.current_step = session[:receipt_step]
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @receipt }
+    end
+
   end
 
   # GET /receipts/1/edit
@@ -79,20 +85,18 @@ class ReceiptsController < ApplicationController
     @receipt.current_step = session[:receipt_step]
     if @receipt.valid?
       if @receipt.last_step?
-        @receipt.save
-        UserMailer.receiptavailable_email(@receipt)
+        if @receipt.save
+          UserMailer.receiptavailable_email(@receipt)
+          flash[:notice] = "Receipt saved."
+          redirect_to home_welcome_path
+          return
+        end
       else
         @receipt.next_step
       end
       session[:receipt_step] = @receipt.current_step
     end
-    if ! @receipt.new_record?
-     # session[:receipt_params] = nil
-      flash[:notice] = "Receipt saved."
-      redirect_to home_welcome_path
-    else
-      redirect_to new_receipt_url
-    end
+    render action: "new"
   end
 
   # PUT /receipts/1

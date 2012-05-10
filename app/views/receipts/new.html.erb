@@ -3,7 +3,12 @@
 <% end %>
 
 <%= form_for(@receipt, :validate=>true, :html=> { :multipart => true } ) do |f| %>
-  <%= render "#{@receipt.current_step}_step", :f => f%>
+<ul>
+  <%  @receipt.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+    <%= render "#{@receipt.current_step}_step", :f => f%>
   <p><%= f.submit "Continue" unless @receipt.last_step? %></p>
   <p><%= f.submit "I'm Done" if @receipt.last_step? %></p>
 

@@ -77,10 +77,13 @@ class Receipt < ActiveRecord::Base
   end
 
   def total_paid_is_valid
-    expected_paid = (expiration_time - purchased_time ) / 3600 * rate
-    expected_paid_range = expected_paid * 0.2
+    if expiration_time_is_valid && purchased_time_is_valid
+      expected_paid = (expiration_time - purchased_time ) / 3600 * rate
+      expected_paid_range = expected_paid * 0.2
 
-    errors.add(:total_paid, 'total paid is not right.  Should be closer to $' + expected_paid.to_s) unless total_paid_reasonable
+      errors.add(:total_paid, 'total paid is not right.  Should be closer to $' + expected_paid.to_s) unless total_paid_reasonable
+    end
+    true
   end
 
   def mailto_link
