@@ -47,4 +47,16 @@ Ptrexchange::Application.configure do
     :enable_starttls_auto => true  
   }
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      :login => "joshua_1335998954_biz_api1.gmail.com",
+      :password => "1335998980",
+      :signature => "AN8GmBSN4grsEK1JjJTateXbZ-bjABLl1q4q8wGWKZh82u4sxUJk29oo"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end
