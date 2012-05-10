@@ -34,7 +34,7 @@ class Receipt < ActiveRecord::Base
   def paypal_url(transaction_id, return_url, payment_notification_url)
     values = {
       :business => 'joshua_1335998954_biz@gmail.com',
-      :cmd => '_cart',
+      :cmd => '_express-checkout',
       :upload => 1,
       :return => return_url,
       :notify_url => payment_notification_url,

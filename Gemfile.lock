@@ -25,6 +25,16 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.2)
+    active_utils (1.0.3)
+      activesupport (>= 2.3.11)
+      i18n
+    activemerchant (1.21.0)
+      active_utils (>= 1.0.2)
+      activesupport (>= 2.3.11)
+      builder (>= 2.0.0)
+      i18n
+      json (>= 1.5.1)
+      money (<= 3.7.1)
     activemodel (3.2.3)
       activesupport (= 3.2.3)
       builder (~> 3.0.0)
@@ -52,7 +62,6 @@ GEM
     coffee-script-source (1.3.1)
     daemons (1.1.8)
     erubis (2.7.0)
-    eventmachine (1.0.0.beta.2)
     eventmachine (1.0.0.beta.2-x86-mingw32)
     execjs (1.3.1)
       multi_json (~> 1.0)
@@ -72,8 +81,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.18)
+    money (3.7.1)
+      i18n (~> 0.4)
     multi_json (1.3.4)
-    pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -110,7 +120,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.6)
     sqlite3 (1.3.6-x86-mingw32)
     thin (1.3.1)
       daemons (>= 1.0.9)
@@ -130,6 +139,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  activemerchant
   client_side_validations
   coffee-rails (~> 3.2.1)
   eventmachine (= 1.0.0.beta.2)

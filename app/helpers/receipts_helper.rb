@@ -41,6 +41,10 @@ module ReceiptsHelper
     render(:inline=> html)
   end
 
+  def year_hidden(id, name)
+    html = "<input id='#{id}' name='#{name}' type='hidden' value='2012' />"
+    render(:inline=> html)
+  end
 
   def month_select(id, name, selected_month = Time.now.mon, cssclass='')
     subhtml=""
