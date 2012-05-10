@@ -22,12 +22,6 @@ Please contact the owner to arrange payment/delivery
 <p>
 -->
 
-<%= form_tag("/home/paidreceipts", :method => "get") do %>
-<%= text_field_tag(:buyer_email, nil, :size => 30, :placeholder => 'Enter paypal email used') %><br>
-<%= submit_tag("Refresh to see Receipts") %>
-<% end %>
-
-
 <% @receipts.each do |receipt| %>
 
 <table>
