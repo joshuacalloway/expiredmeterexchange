@@ -1,3 +1,10 @@
+<style type="text/css">
+.LARGER_METERRECEIPT_FONT {font-size:24pt;}
+.GREEN {color: rgb(0,220,98);}
+.SMALLGREEN {font-size:6pt;color: rgb(0,220,98);}
+
+</style>
+
 Your purchased receipts.<br>
 Please contact the owner to arrange payment/delivery
 
@@ -20,6 +27,7 @@ Please contact the owner to arrange payment/delivery
 <%= submit_tag("Refresh to see Receipts") %>
 <% end %>
 
+
 <% @receipts.each do |receipt| %>
 
 <table>
@@ -28,16 +36,59 @@ Please contact the owner to arrange payment/delivery
     <td><%= receipt.email %></td>
   </tr>
   <tr>
-    <th>Rate</th>
-    <td>$<%= receipt.rate %></td>
+    <th>Owner of receipt cell</th>
+    <td><%= receipt.cell_number %></td>
   </tr>
-  <tr>
-    <th>Purchased time</th>
-    <td><%= receipt.purchased_time %></td>
-  </tr>
-  <tr>
-    <th>Expiration time</th>
-    <td><%= receipt.expiration_time %></td>
+<tr>
+<td colspan="2">
+<table border="0" style="border-width: 1px; border-color:#000000;
+border-style: solid;">
+<tr>
+<td colspan="5" class="GREEN">Valid at any pay box with same or lesser hourly RATE, until expired</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td colspan="3">Motorcycle Plate No:_ _ _ _ _ _ _</td>
+</tr>
+<tr>
+<th align="right">
+
+<td rowspan="2" colspan="1" class="LARGER_METERRECEIPT_FONT">
+<%= receipt.rate %>
+</td>
+<td align="left">Paid:$ <%= receipt.total_paid %>
+<%= "%02d" % receipt.purchased_time.hour %>:<%= "%02d" % receipt.purchased_time.min %>
+</tr>
+
+</tr>
+<tr>
+<td>
+<td>ID: 123456 <%= "%02d" % receipt.purchased_time.month %>/<%= "%02d" % receipt.purchased_time.day %>/12
+</tr>
+<tr>
+<td>
+<td border="1" style="border-width: 1px; border-color:#000000;border-style: dashed;" colspan="5"><table>
+
+</tr>
+<tr>
+<td rowspan="2" class="LARGER_METERRECEIPT_FONT"><%= receipt.expiration_time.hour %>:<%= "%02d" % receipt.expiration_time.min %>
+</td>
+<td>
+  <%= month_abbrev(receipt.expiration_time.mon) %><td rowspan="2" class="LARGER_METERRECEIPT_FONT"><%= "%02d" % receipt.expiration_time.day %>
+<td>12
+</tr>
+<tr>
+<td>PM
+<tr>
+<td>Expiration Time
+<td><td>Valid Date
+</tr>
+</table>
+<tr><td><td>79780<td align="right">$<%= receipt.rate %>/hr
+<tr><td class="GREEN" rowspan="2">LAZ<td colspan="3" class="SMALLGREEN">OPERATED BY LAZ PARKING&nbsp;&nbsp;&nbsp;chicagometers.com&nbsp;&nbsp;&nbsp;877.242.7901<br>PLACE THIS SIDE UP ON DASHBOARD CURBSIDE&nbsp;&nbsp;&nbsp;SEE DIRECTIONS ON REVERSE
+</tr>
+</table>
+ 
+
   </tr>
   <tr>
     <th>Photo</th>
@@ -49,6 +100,7 @@ Please contact the owner to arrange payment/delivery
 <% end %>
 
 <%= paginate @receipts %>
+
 
 <!--
 for email - future reference 
