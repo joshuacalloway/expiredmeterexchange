@@ -9,7 +9,13 @@ module ReceiptsHelper
       end
       subhtml << "<option value='" << leading_zero(hour) << "'" << selected << ">" <<  leading_zero(hour) << "</option>"
     }
-    html = "<select class='#{cssclass}' id='#{id}' name='#{name}'>#{subhtml}</select>"
+    #javascript =""
+    javascript = "onchange='adjustAMPM()'"
+
+   # if id.eql? "receipt_expiration_time_3i"
+    #  javascript = "onchange='adjustAMPM()'"
+   # end
+    html = "<select #{javascript} class='#{cssclass}' id='#{id}' name='#{name}'>#{subhtml}</select>"
     render(:inline=> html)
   end
 

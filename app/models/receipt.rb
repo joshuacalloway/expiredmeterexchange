@@ -9,8 +9,8 @@ class Receipt < ActiveRecord::Base
   validate :purchased_time_is_valid, :expiration_time_is_valid, :total_paid_is_valid, :if => lambda { |r| r.current_step == "meterdetails" }
   validates_attachment_size :image, :less_than => 5.megabytes, :if => lambda { |r| r.current_step == "meterimage" }
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :if => lambda { |r| r.current_step == "meterimage" }
-  before_save :default_values
-  
+  after_initialize :default_values
+
   def current_step
     @current_step || steps.first
   end
@@ -96,6 +96,8 @@ class Receipt < ActiveRecord::Base
   private
   def default_values
     self.state ||= State.NONE
+    self.expiration_time ||= DateTime.now
+    self.rate ||= 1.75
   end  
   
 
