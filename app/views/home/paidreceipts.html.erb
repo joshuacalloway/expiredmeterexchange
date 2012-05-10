@@ -1,6 +1,20 @@
 Your purchased receipts.<br>
 Please contact the owner to arrange payment/delivery
 
+<!--
+<h3>details</h3>
+<= @details.payer_id %>
+<br>
+<= @details.email %>
+<br>
+<= @details.params %>
+<p>
+<= @details.methods %>
+<p>
+<= @details.params["invoice_id"] %>
+<p>
+-->
+
 <%= form_tag("/home/paidreceipts", :method => "get") do %>
 <%= text_field_tag(:buyer_email, nil, :size => 30, :placeholder => 'Enter paypal email used') %><br>
 <%= submit_tag("Refresh to see Receipts") %>

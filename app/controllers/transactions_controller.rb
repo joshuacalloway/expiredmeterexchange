@@ -17,7 +17,6 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(params[:transaction])
-#    @transaction.buyer_email = "unverified@gmail.com"
     @transaction.save
 #    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, home_paidreceipts_url, payment_notifications_url)
     r = Receipt.find(@transaction.receipt_id)
@@ -34,7 +33,7 @@ class TransactionsController < ApplicationController
     options[:return_url] = home_paidreceipts_url
     options[:cancel_return_url] = home_welcome_url
     options[:transaction_id] = transaction.id
-    options[:invoice] = transaction.id
+    options[:order_id] = transaction.id
 
     options[:items] = [{
       :name => "Contact Info for Meter receipt",
@@ -42,7 +41,7 @@ class TransactionsController < ApplicationController
       :quantity => 1,
       :amount => 100,
       :url => nil,
-      :invoice => transaction.id,
+      :order_id => transaction.id,
       :description => "Contact Information for 1 meter receipt"
     }]
 

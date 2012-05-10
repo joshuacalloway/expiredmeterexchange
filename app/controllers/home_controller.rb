@@ -9,14 +9,21 @@ class HomeController < ApplicationController
 
   def paidreceipts
 # select r.* from receipts r, transactions t where t.receipt_id = r.id and t.buyer_email = 'dgorodess@gmail.com' and t.status='paid at paypal'
-    buyer_email = params[:buyer_email]
+    
     express_token = params[:token]
     if express_token
       details = EXPRESS_GATEWAY.details_for(express_token)
-      EXPRESS_GATEWAY.purchase(100, { :ip => request.remote_ip, :token => express_token, :payer_id => details.payer_id })
-    end
+      @details = details
+      @response = EXPRESS_GATEWAY.purchase(100, { :ip => request.remote_ip, :token => express_token, :payer_id => details.payer_id })
+      t = Transaction.find(details.params["invoice_id"])
+      t.buyer_email = details.email
+      t.status = 'paid at paypal'
+      t.save
 
-    @receipts = Kaminari.paginate_array(Receipt.joins("JOIN transactions on transactions.receipt_id = receipts.id and transactions.status = 'paid at paypal' and transactions.buyer_email='#{buyer_email}'")).page(params[:page]).per(1)
+      @receipts = Kaminari.paginate_array(Receipt.joins("JOIN transactions on transactions.receipt_id = receipts.id and transactions.status = 'paid at paypal' and transactions.buyer_email='#{t.buyer_email}'")).page(params[:page]).per(1)
+    else
+      @receipts = []
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @receipts }
