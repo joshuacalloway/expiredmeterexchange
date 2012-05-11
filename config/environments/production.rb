@@ -82,9 +82,9 @@ Ptrexchange::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-      :login => "joshua_1335998954_biz_api1.gmail.com",
-      :password => "1335998980",
-      :signature => "AN8GmBSN4grsEK1JjJTateXbZ-bjABLl1q4q8wGWKZh82u4sxUJk29oo"
+      :login => "expiredmeterexchange_api1.gmail.com",
+      :password => "7PNUCYBX7FZ55ZSK",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AamHjxvpLQari5Jp91R-gZzkL0vY"
     }
     ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
