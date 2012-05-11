@@ -15,7 +15,14 @@
     <meta itemprop="description" content="This would be a description of the content your users are sharing">
 </head>
 <body bgcolor="silver">
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <p>
 <p>
 
@@ -24,9 +31,11 @@
 <%= render 'navigation' %>
 <p>
 <!-- Place this tag where you want the +1 button to render -->
+<div class="fb-like" data-href="http://expiredmeterexchange.herokuapp.com/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div><br>
 <g:plusone size="medium" annotation="inline"></g:plusone>
 
 <!-- Place this render call where appropriate -->
+
 <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
