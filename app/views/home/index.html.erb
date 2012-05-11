@@ -1,9 +1,18 @@
+<style type="text/css">
+.LARGER_METERRECEIPT_FONT {font-size:24pt;}
+.GREEN {color: rgb(0,220,98);}
+.SMALLGREEN {font-size:6pt;color: rgb(0,220,98);}
+</style>
+
 <%= form_tag("/home/search", :method => "get") do %>
 <table>
   <input type="hidden" name="page" value="1"/>
   <tr><th align="left"><%= label_tag(:rate, "Parking Zone Rate:") %><%= select_tag(:rate, options_for_select([['$1.75',1.75],['$3.50',3.5],['$5.75',5.75]])) %></th></tr>
   <tr><th align="left"><%= label_tag(:ticket_time, "Ticket Time:") %></th></tr>
-  <tr><td colspan="2"><%= select_datetime DateTime.now.advance(:minutes => -30), :prefix=> :ticket_time, :discard_year=> true %></td></tr>
+  <tr><td colspan="2"><%= month_abbrev_select "ticket_time_month", "ticket_time[month]" %><%= day_select "ticket_time_day", "ticket_time[day]", Time.now.day %> at <%= hour_select("ticket_time_hour", "ticket_time[hour]", Time.now.hour) %>:<%= minute_select "ticket_time_minute", "ticket_time[minute]" %></td>
+
+    <%= year_hidden "ticket_time_year", "ticket_time[year]" %>
+
   <tr><th colspan="2" align="left"><%= submit_tag("Search Meter Receipts") %></th></tr>
 </table>
 <% end %>
