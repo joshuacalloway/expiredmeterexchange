@@ -6,6 +6,13 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag :defaults, "rails.validations" %>
   <%= csrf_meta_tags %>
+
+  <!-- Update your html tag to include the itemscope and itemtype attributes -->
+  <html itemscope itemtype="http://schema.org/LocalBusiness">
+    
+    <!-- Add the following three tags inside head -->
+    <meta itemprop="name" content="expiredmeterexchange">
+    <meta itemprop="description" content="This would be a description of the content your users are sharing">
 </head>
 <body bgcolor="silver">
 
@@ -15,5 +22,17 @@
 <%= yield %>
 
 <%= render 'navigation' %>
+<p>
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" annotation="inline"></g:plusone>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 </body>
 </html>
