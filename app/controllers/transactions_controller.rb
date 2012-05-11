@@ -18,7 +18,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.save
-#    redirect_to Receipt.find(@transaction.receipt_id).paypal_url(@transaction.id, home_paidreceipts_url, payment_notifications_url)
     r = Receipt.find(@transaction.receipt_id)
     response = EXPRESS_GATEWAY.setup_purchase(100, express_options(@transaction, r))
 

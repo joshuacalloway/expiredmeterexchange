@@ -80,7 +80,7 @@ Ptrexchange::Application.configure do
 
 
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
+    ActiveMerchant::Billing::Base.mode = :production
     paypal_options = {
       :login => "expiredmeterexchange_api1.gmail.com",
       :password => "7PNUCYBX7FZ55ZSK",
