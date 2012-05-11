@@ -12,7 +12,8 @@
     <%= form_for(@transaction) do |f| %>
     <%= f.hidden_field :receipt_id %>
   </tr>
-  <tr><th><%= f.submit "Pay $1 at PayPal" %></th></tr>
+  <tr><td align="top">Pay $1 at PayPal to contact the owner. <td><%= f.submit "Pay $1 at PayPal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+</th></tr>
 <% end %>
   <tr>
 <td colspan="2">
