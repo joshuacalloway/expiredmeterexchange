@@ -83,6 +83,8 @@ class ReceiptsController < ApplicationController
     session[:receipt_params].deep_merge!(params[:receipt]) if params[:receipt]
     @receipt = Receipt.new(session[:receipt_params])
     @receipt.current_step = session[:receipt_step]
+    logger.debug "@receipt.expiration_time_ampm : #{@receipt.expiration_time_ampm}"
+    @receipt.expiration_time = (@receipt.expiration_time + 12.hours).to_datetime if @receipt.expiration_time_ampm == "PM" 
     if @receipt.valid?
       if @receipt.last_step?
         if @receipt.save

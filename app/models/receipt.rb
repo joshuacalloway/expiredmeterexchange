@@ -2,7 +2,8 @@ class Receipt < ActiveRecord::Base
   has_many :payment_notifications
   belongs_to :state
   has_attached_file :image, :url => "/assets/receipts/:id/:basename.:extension", :path => ":rails_root/public/assets/receipts/:id/:basename.:extension"
-  attr_accessible :state, :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image
+  attr_accessible :state, :email, :expiration_time, :purchased_time, :rate, :total_paid, :cell_number, :image, :expiration_time_ampm
+  attr_accessor :expiration_time_ampm
   attr_writer :current_step
   validates :email, :presence => true, :email_format => true, :if => lambda { |r| r.current_step == "contact" }
   validates :total_paid, :presence => true, :if => lambda { |r| r.current_step == "meterdetails" }
@@ -49,7 +50,8 @@ class Receipt < ActiveRecord::Base
 
   
   def expiration_time_is_valid
-    errors.add(:expiration_time, 'expiration time is not right, It should be greater then purchase time') if expiration_time <= purchased_time
+    expiration_time = (self.expiration_time + 12.hours).to_datetime if self.expiration_time_ampm == "PM" 
+    errors.add(:expiration_time, 'expiration time is not right, It should be greater then purchase time') if self.expiration_time <= self.purchased_time
     errors.add(:expiration_time, 'expiration time is not right, Total time paid should be within 24 hours') if !is_total_time_reasonable
   end
 

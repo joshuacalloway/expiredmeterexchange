@@ -13,9 +13,18 @@ module ReceiptsHelper
     render(:inline=> html)
   end
 
+  def ampm_select(id, name, selected_hour = Time.now.hour, cssclass='')
+    subhtml=""
+    subhtml << "<option value='AM' selected>AM</option>"
+    subhtml << "<option value='PM'>PM</option>"
+    html = "<select class='#{cssclass}' id='#{id}' name='#{name}'>#{subhtml}</select>"
+    render(:inline=> html)
+
+  end
+
   def hour_select(id, name, selected_hour = Time.now.hour, cssclass='')
     subhtml=""
-    (0..23).each { |hour|
+    (0..12).each { |hour|
       if (hour == selected_hour) 
         selected = "selected"
       else
@@ -23,13 +32,12 @@ module ReceiptsHelper
       end
       subhtml << "<option value='" << leading_zero(hour) << "'" << selected << ">" <<  leading_zero(to_american_format(hour)) << "</option>"
     }
-    #javascript =""
-    javascript = "onchange='adjustAMPM()'"
+#    javascript = "onchange='adjustAMPM()'"
 
    # if id.eql? "receipt_expiration_time_3i"
     #  javascript = "onchange='adjustAMPM()'"
    # end
-    html = "<select #{javascript} class='#{cssclass}' id='#{id}' name='#{name}'>#{subhtml}</select>"
+    html = "<select class='#{cssclass}' id='#{id}' name='#{name}'>#{subhtml}</select>"
     render(:inline=> html)
   end
 
